@@ -13,10 +13,33 @@
  */
 ?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<div id="sharp-slideshow">
+	<div class="slideshow-container">
+		<div class="mySlides fade">
+			<div class="numbertext">1 / 3</div>
+			<img src="<?php echo plugin_dir_url( __FILE__ ) ?>../img/img1.jpg" style="width:100%">
+			<div class="text">Caption Text</div>
+		</div>
 
-<?php 
+		<div class="mySlides fade">
+			<div class="numbertext">2 / 3</div>
+			<img src="<?php echo plugin_dir_url( __FILE__ ) ?>../img/img2.jpg" style="width:100%">
+			<div class="text">Caption Two</div>
+		</div>
 
-	echo '<span id="holandaquetalca">HOLANDA QUE TALCA con PHP</span>';
+		<div class="mySlides fade">
+			<div class="numbertext">3 / 3</div>
+			<img src="<?php echo plugin_dir_url( __FILE__ ) ?>../img/img3.jpg" style="width:100%">
+			<div class="text">Caption Three</div>
+		</div>
 
- ?>
+		<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+		<a class="next" onclick="plusSlides(1)">&#10095;</a>
+	</div>
+	<br />
+	<div style="text-align:center">
+		<span class="dot" onclick="currentSlide(1)"></span> 
+		<span class="dot" onclick="currentSlide(2)"></span> 
+		<span class="dot" onclick="currentSlide(3)"></span> 
+	</div>
+</div>
