@@ -21,13 +21,13 @@ var jshintstylish = require('jshint-stylish');
 var lib_dir = 'node_modules/';
 var src_dir = "src/";
 
-// var build_dir_base = 'PATH/TO/Wordpress/INSTALLATION/wp-content/plugins/';
-var build_dir_base = './';
+var build_dir_base = 'E:/Dropbox/DESARROLLO/joannecrowther.com/wordpress/wp-content/plugins/';
+// var build_dir_base = './';
 var build_dir = build_dir_base + "sharp-slideshow/";
 
 var script_src = src_dir+'public/js/*.js';
 var script_build = build_dir+'public/js/';
-var script_concat = 'sharp-slideshow.js';
+var script_concat = 'sharp-slideshow-public.js';
 var script_admin_src = src_dir+'admin/js/*.js';
 var script_admin_build = build_dir+'admin/js/';
 var script_admin_concat = 'sharp-slideshow-admin.js';
