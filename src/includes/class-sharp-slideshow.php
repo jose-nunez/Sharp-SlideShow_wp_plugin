@@ -75,7 +75,6 @@ class Sharp_Slideshow {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -172,7 +171,7 @@ class Sharp_Slideshow {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
+		$this->loader->add_shortcode('sharp-slideshow', $plugin_public, 'shortcode' );
 	}
 
 	/**

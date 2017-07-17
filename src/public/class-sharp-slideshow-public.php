@@ -100,4 +100,26 @@ class Sharp_Slideshow_Public {
 
 	}
 
+
+	/**
+	 * Loads the content on shortcode invocation
+	 * [sharp-slideshow]
+	 *
+	 * @since    1.0.0
+	 */
+	public function shortcode($atts, $content=null, $code=""){
+		return $this->display();
+	}
+
+	/**
+	 * Returns the front code to be shown
+	 *
+	 * @since    1.0.0
+	 */
+	private function display(){
+		ob_start();
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/sharp-slideshow-public-display.php';
+		return ob_get_clean();
+	}
+
 }
