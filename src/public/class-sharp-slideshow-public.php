@@ -90,6 +90,13 @@ class Sharp_Slideshow_Public {
 	 */
 	private function display(){
 		ob_start();
+
+			$slides = array(
+				array('title'=>'title 1','caption'=>'este es el caption 1','img_url'=>plugin_dir_url( __FILE__ ) .'/img/img1.jpg','link'=>'est-quia-recusandae-sed-facere-autem'),
+				array('title'=>'title 2','caption'=>'este es el caption 2','img_url'=>plugin_dir_url( __FILE__ ) .'/img/img2.jpg','link'=>'natus-est-est-autem-fuga/'),
+				array('title'=>'title 3','caption'=>'este es el caption 3','img_url'=>plugin_dir_url( __FILE__ ) .'/img/img3.jpg','link'=>'http://www.josenunez.org','target'=>'_blank'),
+			);
+
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/sharp-slideshow-public-display.php';
 		return ob_get_clean();
 	}
