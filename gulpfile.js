@@ -55,8 +55,10 @@ var lib_other_src = [
 var lib_build = build_dir+'lib/';
 
 
-var img_src = src_dir+'img/**';
-var img_build = build_dir+'img/';
+var img_src = src_dir+'public/img/**';
+var img_build = build_dir+'public/img/';
+var img_admin_src = src_dir+'public/img/**';
+var img_admin_build = build_dir+'public/img/';
 
 var others_src = [
 	// src_dir+'fonts/*',
@@ -164,12 +166,16 @@ tasks.watch.push('html_w');
 /* IMAGES ____________________________________________________________________________*/
 
 gulp.task('img', function(){
-	gulp.src(img_src)
-		.pipe(imagemin())
-		.pipe(gulp.dest(img_build))
-	;
+	var taskita = function(src,build){
+		gulp.src(src)
+			.pipe(imagemin())
+			.pipe(gulp.dest(build))
+		;
+	}
+	taskita(img_src,img_build);
+	taskita(img_admin_src,img_admin_build);
 });
-gulp.task('img_w', function(){gulp.watch(img_src,['img']);});
+gulp.task('img_w', function(){gulp.watch([img_src,img_admin_src],['img']);});
 gulp.task('img_watch',['img','img_w']);
 tasks.once.push('img');
 // tasks.watch.push('image_min_w');
