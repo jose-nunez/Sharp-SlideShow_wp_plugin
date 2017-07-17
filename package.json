@@ -1,0 +1,24 @@
+{
+	"name": "sharp-slideshow-wp_plugin"
+	,"version": "1.0.0"
+	,"description": "Adds a responsive lightweght slideshow based on image links or posts and pages"
+	,"author": { 
+		"name" : "Jose Nunez"
+		, "email":"info@josenunez.org"
+		, "url":"http://josenunez.org/"
+	}
+	,"devDependencies": {
+		"gulp": "^3.9.1"
+		,"gulp-autoprefixer": "^3.1.1"
+		,"gulp-sass": "^2.3.2"
+		,"gulp-clean-css": "^2.0.12"
+		,"gulp-concat": "^2.6.1"
+		,"gulp-htmlmin": "^2.0.0"
+		,"gulp-imagemin": "^3.0.3"
+		,"gulp-rename": "^1.2.2"
+		,"gulp-uglify": "^2.1.2"
+		,"gulp-jshint": "^2.0.4"
+		,"jshint": "^2.9.4"
+		,"jshint-stylish": "^2.2.1"
+	}
+}
