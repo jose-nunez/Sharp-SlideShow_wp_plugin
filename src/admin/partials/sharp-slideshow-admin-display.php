@@ -15,6 +15,4 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 
-
-<span class="holi">HOLIta</span>
-<div id="app"></div>
+<div id="sharp-slideshow-admin"></div>

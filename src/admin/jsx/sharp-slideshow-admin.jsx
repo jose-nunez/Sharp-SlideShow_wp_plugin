@@ -11,5 +11,5 @@ const MyComponent = ()=>{
 
 ReactDOM.render(
 	<MyComponent></MyComponent>,
-	document.getElementById('app')
+	document.getElementById('sharp-slideshow-admin')
 );
