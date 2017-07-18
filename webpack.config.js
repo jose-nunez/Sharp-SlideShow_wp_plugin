@@ -16,6 +16,7 @@ module.exports = {
 	},
 	resolve: {
 		alias: {
+			fontsStyles: '../scss/fontStyles.css',
 			appStyles: '../scss/sharp-slideshow-admin.scss',
 		},
 		extensions: ['.js', '.jsx']

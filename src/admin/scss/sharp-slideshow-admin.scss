@@ -3,8 +3,12 @@
 	line-height: initial;
 
 	.holi{
-		font-size: 3rem;
 		background-color: #baa821;
+		
+		font: {
+			size: 3rem;
+			family: 'Roboto';
+		}
 	}
 
 
