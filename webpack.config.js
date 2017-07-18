@@ -6,9 +6,11 @@ module.exports = {
 		errorDetails: true
 	},
 	entry: [
-		'./src/admin/jsx/sharp-slideshow-admin.js',
+		'./src/admin/jsx/sharp-slideshow-admin.jsx',
 	],
 	output: {
+		// path: __dirname,
+		// filename: './sharp-slideshow/admin/js/sharp-slideshow-admin.js'
 		path: path.resolve('E:/Dropbox/DESARROLLO/joannecrowther.com/wordpress/wp-content/plugins/sharp-slideshow/admin/js/'),
 		filename: 'sharp-slideshow-admin.js'
 	},
@@ -16,10 +18,18 @@ module.exports = {
 		alias: {
 			appStyles: '../scss/sharp-slideshow-admin.scss',
 		},
-		extensions: ['.js']
+		extensions: ['.js', '.jsx']
 	},
 	module: {
 		loaders: [
+			{
+				test: /\.jsx?$/,
+				loader: 'babel-loader',
+				query: {
+					presets: ['react', 'es2015','stage-0']
+				},
+				exclude: /(node_modules|bower_components)/
+			},
 			{
 				test: /\.css$/,
 				loaders: ["style-loader","css-loader?sourceMap"]
