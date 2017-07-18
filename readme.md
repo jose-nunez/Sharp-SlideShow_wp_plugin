@@ -1,0 +1,1 @@
+Adds a responsive lightweght slideshow based on image links or posts and pages
