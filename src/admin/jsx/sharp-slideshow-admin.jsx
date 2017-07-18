@@ -15,7 +15,7 @@ import 'appStyles';
 const MyComponent = ()=>{
 	return (
 		<div className="holi">
-			REact is working
+			<h1>Sharp Slideshow</h1>
 			<MuiThemeProvider>
 			{/*
 				<RaisedButton label="Default" />
