@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import RaisedButton from 'material-ui/RaisedButton';
+
+import TabsExampleSimple from 'tabsExampleSimple';
 
 import 'fontsStyles';
 import 'appStyles';
@@ -13,7 +17,10 @@ const MyComponent = ()=>{
 		<div className="holi">
 			REact is working
 			<MuiThemeProvider>
+			{/*
 				<RaisedButton label="Default" />
+			*/}
+				<TabsExampleSimple></TabsExampleSimple>
 			</MuiThemeProvider>
 		</div>
 	)

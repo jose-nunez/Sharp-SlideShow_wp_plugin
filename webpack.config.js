@@ -18,6 +18,7 @@ module.exports = {
 		alias: {
 			fontsStyles: '../scss/fontStyles.css',
 			appStyles: '../scss/sharp-slideshow-admin.scss',
+			tabsExampleSimple: './components/Tabs.jsx'
 		},
 		extensions: ['.js', '.jsx']
 	},
