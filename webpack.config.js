@@ -1,42 +1,22 @@
 var webpack  = require('webpack');
-
-var build_dir_base = 'E:/Dropbox/DESARROLLO/joannecrowther.com/wordpress/wp-content/plugins/';
-// var build_dir_base = './';
-var build_dir = build_dir_base + "sharp-slideshow/";
-
-var script_src  = './src/admin/jsx/';
+var path = require('path');
 
 module.exports = {
 	stats: {
 		errorDetails: true
 	},
 	entry: [
-		// 'script-loader!jquery/dist/jquery.min.js',
-		// 'script-loader!foundation-sites/dist/js/foundation.min.js',
-		// script_src + 'sharp-slideshow-admin.jsx',
 		'./src/admin/jsx/sharp-slideshow-admin.jsx',
 	],
-	/*externals:{
-		'jquery': 'jQuery',
-	},
-	plugins:[
-		new webpack.ProvidePlugin({
-			'$':'jquery',
-			'jQuery':'jquery',
-		}),
-	],
-	*/
 	output: {
-		path: __dirname,
-		filename: build_dir +'sharp-slideshow-admin.js'
+		// path: __dirname,
+		// filename: './sharp-slideshow/admin/js/sharp-slideshow-admin.js'
+		path: path.resolve('E:/Dropbox/DESARROLLO/joannecrowther.com/wordpress/wp-content/plugins/sharp-slideshow/admin/js/'),
+		filename: 'sharp-slideshow-admin.js'
 	},
 	resolve: {
 		alias: {
-			/*
-			ErrorModal: './ErrorModal.jsx',
-			openWeatherMap: './api/openWeatherMap.jsx',
-			appStyles: '../styles/app.scss',
-			*/
+			appStyles: '../scss/sharp-slideshow-admin.scss',
 		},
 		extensions: ['.js', '.jsx']
 	},

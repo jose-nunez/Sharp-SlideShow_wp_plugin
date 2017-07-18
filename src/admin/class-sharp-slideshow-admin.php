@@ -60,7 +60,7 @@ class Sharp_Slideshow_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sharp-slideshow-admin.css', array(), $this->version, 'all' );
+		// wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sharp-slideshow-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -70,7 +70,7 @@ class Sharp_Slideshow_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sharp-slideshow-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sharp-slideshow-admin.js', null, $this->version, true );
 	}
 
 	/**

@@ -17,3 +17,4 @@
 
 
 <span class="holi">HOLIta</span>
+<div id="app"></div>
