@@ -10,7 +10,7 @@ module.exports = {
 		errorDetails: true
 	},
 	entry: [
-		'./src/admin/jsx/sharp-slideshow-admin.jsx',
+		'./src/admin/js/sharp-slideshow-admin.jsx',
 	],
 	output: {
 		// path: path.resolve(__dirname,'sharp-slideshow/'),
@@ -22,8 +22,10 @@ module.exports = {
 			/* STYLES ____________________________________________________________________________________________ */
 			fontsStyles: 	p_resolve('scss/fontStyles.css'),
 			appStyles: 		p_resolve('scss/sharp-slideshow-admin.scss'),
-			/* JSX COMPONENTS ____________________________________________________________________________________ */
-			tabsExampleSimple:		p_resolve('jsx/components/Tabs.jsx'),
+			/* COMPONENTS ____________________________________________________________________________________ */
+			tabsExampleSimple:		p_resolve('js/components/Tabs.jsx'),
+			/* UTIL ____________________________________________________________________________________ */
+			wordpressAPI:		p_resolve('js/util/WordpressAPI.jsx'),
 		},
 		extensions: ['.js', '.jsx']
 	},

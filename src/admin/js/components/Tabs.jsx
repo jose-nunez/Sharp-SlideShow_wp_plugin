@@ -2,6 +2,8 @@ import React from 'react';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
 
+import WP_API from 'wordpressAPI';
+
 const styles = {
 	headline: {
 		fontSize: 24,
@@ -15,11 +17,20 @@ function handleActive(tab) {
 	alert(`A tab with this route property ${tab.props['data-route']} was activated.`);
 }
 
+var myapi1 = new WP_API();
+var myapi2 = new WP_API();
+
+myapi2.holanda = 'cambiamos la weaita';
+
+console.log(myapi1.holanda);
+
+
 const TabsExampleSimple = () => (
 	<Tabs>
 		<Tab label="Item One" >
 			<div>
 				<h2 style={styles.headline}>Tab One</h2>
+				<h2>{myapi2.holanda}</h2>
 				<p>
 					This is an example tab.
 				</p>
