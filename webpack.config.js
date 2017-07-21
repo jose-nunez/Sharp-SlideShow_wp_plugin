@@ -1,6 +1,10 @@
 var webpack  = require('webpack');
 var path = require('path');
 
+function p_resolve(dirname){
+	return path.resolve(__dirname,'src/admin/'+dirname);
+}
+
 module.exports = {
 	stats: {
 		errorDetails: true
@@ -9,16 +13,17 @@ module.exports = {
 		'./src/admin/jsx/sharp-slideshow-admin.jsx',
 	],
 	output: {
-		// path: __dirname,
-		// filename: './sharp-slideshow/admin/js/sharp-slideshow-admin.js'
+		// path: path.resolve(__dirname,'sharp-slideshow/'),
 		path: path.resolve('E:/Dropbox/DESARROLLO/joannecrowther.com/wordpress/wp-content/plugins/sharp-slideshow/admin/js/'),
 		filename: 'sharp-slideshow-admin.js'
 	},
 	resolve: {
 		alias: {
-			fontsStyles: '../scss/fontStyles.css',
-			appStyles: '../scss/sharp-slideshow-admin.scss',
-			tabsExampleSimple: './components/Tabs.jsx'
+			/* STYLES ____________________________________________________________________________________________ */
+			fontsStyles: 	p_resolve('scss/fontStyles.css'),
+			appStyles: 		p_resolve('scss/sharp-slideshow-admin.scss'),
+			/* JSX COMPONENTS ____________________________________________________________________________________ */
+			tabsExampleSimple:		p_resolve('jsx/components/Tabs.jsx'),
 		},
 		extensions: ['.js', '.jsx']
 	},
