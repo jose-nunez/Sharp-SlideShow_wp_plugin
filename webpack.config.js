@@ -23,9 +23,13 @@ module.exports = {
 			fontsStyles: 	p_resolve('scss/fontStyles.css'),
 			appStyles: 		p_resolve('scss/sharp-slideshow-admin.scss'),
 			/* COMPONENTS ____________________________________________________________________________________ */
-			tabsExampleSimple:		p_resolve('js/components/Tabs.jsx'),
+			tabsExampleSimple:	p_resolve('js/components/Tabs.jsx'),
+			postsList:			p_resolve('js/components/PostsList.jsx'),
+				arrayPostsList:		p_resolve('js/components/postlist/ArrayPostsList.jsx'),
+				postsListStyles:	p_resolve('js/components/postlist/styles.scss'),
 			/* UTIL ____________________________________________________________________________________ */
-			wordpressAPI:		p_resolve('js/util/WordpressAPI.jsx'),
+			wordpressAPI:	p_resolve('js/util/WordpressAPI.js'),
+			util:			p_resolve('js/util/util.js'),
 		},
 		extensions: ['.js', '.jsx']
 	},

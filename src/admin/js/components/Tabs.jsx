@@ -1,8 +1,15 @@
 import React from 'react';
+
 import {Tabs, Tab} from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
+import RaisedButton from 'material-ui/RaisedButton';
 
-import WP_API from 'wordpressAPI';
+
+import PostsList from 'postsList';
+
+
+// import Divider from 'material-ui/Divider';
+// import Toggle from 'material-ui/Toggle';
 
 const styles = {
 	headline: {
@@ -14,30 +21,15 @@ const styles = {
 };
 
 function handleActive(tab) {
-	alert(`A tab with this route property ${tab.props['data-route']} was activated.`);
+	// alert(`A tab with this route property ${tab.props['data-route']} was activated.`);
 }
-
-var myapi1 = new WP_API();
-var myapi2 = new WP_API();
-
-myapi2.holanda = 'cambiamos la weaita';
-
-console.log(myapi1.holanda);
-
 
 const TabsExampleSimple = () => (
 	<Tabs>
 		<Tab label="Item One" >
 			<div>
 				<h2 style={styles.headline}>Tab One</h2>
-				<h2>{myapi2.holanda}</h2>
-				<p>
-					This is an example tab.
-				</p>
-				<p>
-					You can put any sort of HTML or react component in here. It even keeps the component state!
-				</p>
-				<Slider name="slider0" defaultValue={0.5} />
+				<PostsList />
 			</div>
 		</Tab>
 		<Tab label="Item Two" >

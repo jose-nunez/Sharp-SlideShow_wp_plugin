@@ -15,15 +15,23 @@ class WP_API{
 		this.API_URL = WP_URL+'wp-json/wp/v2/';
 	}
 
-	getPosts(){
-		var requestUrl = this.API_URL+'posts';
-
+	request(requestUrl){
 		return axios.get(requestUrl).then(
 			(resp)=>(resp),
-			(err)=>{throw new Error(err.response.data.message);}
+			(err)=>(err)
 		);
+	}
+
+	getPosts(){
+		var requestUrl = this.API_URL+'posts';
+		return this.request(requestUrl);
+	}
+
+	getMedia(ids){
+		var requestUrl = this.API_URL+'media?include=' + ids.toString();
+		return this.request(requestUrl);
 	}
 
 
 }
-export default new WP_API();
+export default WP_API;
