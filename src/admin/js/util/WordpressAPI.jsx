@@ -1,21 +1,29 @@
 import axios from 'axios';
 
 /*
- *	SINLGETON 
+ *	¿SINLGETON? 
  *	 
  */
 
-var instance = null;
+// var instance = null;
 
-export default class WP_API{
+class WP_API{
 
-	constructor(){
-		if(!instance){ instance = this; }
+	constructor(WP_URL='http://joannecrowther.local/'){
+		// if(!instance){ instance = this; }
 
-		this.holanda = 'hola feo';
+		this.API_URL = WP_URL+'wp-json/wp/v2/';
+	}
 
-		return instance;
+	getPosts(){
+		var requestUrl = this.API_URL+'posts';
+
+		return axios.get(requestUrl).then(
+			(resp)=>(resp),
+			(err)=>{throw new Error(err.response.data.message);}
+		);
 	}
 
 
 }
+export default new WP_API();
