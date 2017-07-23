@@ -60,8 +60,6 @@ class Sharp_Slideshow_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
-		// wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/sharp-slideshow-admin.css', array(), $this->version, 'all' );
-
 	}
 
 	/**
@@ -70,7 +68,8 @@ class Sharp_Slideshow_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sharp-slideshow-admin.js', null, $this->version, true );
+		// wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/sharp-slideshow-admin.js', null, $this->version, true );
+		wp_register_script($this->plugin_name . 'admin', plugins_url('/js/sharp-slideshow-admin.js', __FILE__ ), null, $this->version, true );
 	}
 
 	/**
@@ -91,6 +90,8 @@ class Sharp_Slideshow_Admin {
 		if ( !current_user_can( 'manage_options' ) )  {
 			wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
 		}
+
+		wp_enqueue_script( $this->plugin_name.'admin');
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/sharp-slideshow-admin-display.php';
 	}
 
