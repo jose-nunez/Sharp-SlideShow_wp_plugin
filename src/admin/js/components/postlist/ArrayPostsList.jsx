@@ -5,7 +5,7 @@ import Subheader from 'material-ui/Subheader';
 import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'material-ui/Avatar';
 
-import 'postsListStyles';
+// import 'postsListStyles';
 
 export default class ArrayPostsList extends React.Component{
 	constructor(props){
@@ -26,6 +26,7 @@ export default class ArrayPostsList extends React.Component{
 							primaryText={post.title.rendered}
 							// leftCheckbox={<Checkbox className="post-list-checkbox" />} 
 							leftAvatar={post.featured_media? <Avatar src={this.props.images[post.featured_media].media_details.sizes.thumbnail.source_url} /> : null}
+							// rightAvatar={post.featured_media? <Avatar src={this.props.images[post.featured_media].media_details.sizes.thumbnail.source_url} /> : null}
 							
 						/>
 					);
