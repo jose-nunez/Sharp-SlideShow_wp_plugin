@@ -72,6 +72,28 @@ class Sharp_Slideshow_Public {
 		wp_register_script($this->plugin_name.'public', plugins_url('/js/sharp-slideshow-public.js', __FILE__ ), array(), $this->version, true );
 	}
 
+	/**
+	* Extends Endpoints API
+	* http://joannecrowther.local/wp-json/sharp-slideshow/v1/slideshow
+	*/
+	public function extend_API( $data ) {
+		register_rest_route( 
+			'sharp-slideshow/v1', 
+			'/slideshow', 
+			array(
+				'methods' => 'GET',
+				'callback' => array($this,'shortcode_api'),
+			) 
+		);	
+	}
+
+	/**
+	 * 
+	 */
+	public function shortcode_api($atts, $content=null, $code=""){
+		// return htmlentities($this->display());
+		return $this->display();
+	}
 
 	/**
 	 * Loads the content on shortcode invocation
@@ -82,6 +104,10 @@ class Sharp_Slideshow_Public {
 	public function shortcode($atts, $content=null, $code=""){
 		wp_enqueue_style( $this->plugin_name.'public');
 		wp_enqueue_script($this->plugin_name.'public');
+
+		$js = "intialice(jQuery);";
+		wp_add_inline_script($this->plugin_name.'public',$js);
+		
 		return $this->display();
 	}
 

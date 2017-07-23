@@ -27,7 +27,7 @@ function showSlides(n) {
 }
 
 
-(function( $ ) {
+function intialice( $ ) {
 	'use strict';
 
 	$(function() {
@@ -35,4 +35,4 @@ function showSlides(n) {
 		
 	});
  
-})( jQuery );
+}

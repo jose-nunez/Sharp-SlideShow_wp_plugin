@@ -27,9 +27,11 @@ module.exports = {
 			postsList:			p_resolve('js/components/PostsList.jsx'),
 				arrayPostsList:		p_resolve('js/components/postlist/ArrayPostsList.jsx'),
 				postsListStyles:	p_resolve('js/components/postlist/styles.scss'),
+			slideShowPreview:	p_resolve('js/components/SlideShowPreview.jsx'),
 			/* UTIL ____________________________________________________________________________________ */
-			wordpressAPI:	p_resolve('js/util/WordpressAPI.js'),
-			util:			p_resolve('js/util/util.js'),
+			wordpressAPI:		p_resolve('js/util/WordpressAPI.js'),
+			sharpSlideShowAPI:	p_resolve('js/util/SharpSlideShowAPI.js'),
+			util:				p_resolve('js/util/util.js'),
 		},
 		extensions: ['.js', '.jsx']
 	},

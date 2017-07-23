@@ -6,6 +6,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import PostsList from 'postsList';
 
+import DOMPurify from 'dompurify';
+
 const styles = {
 	headline: {
 		fontSize: 24,
@@ -22,6 +24,7 @@ function handleActive(tab) {
 export default class TabsExampleSimple extends React.Component{
 	constructor(props) {
 		super(props);Object.keys(this).forEach(index=>{if(React.Component[index]==undefined && this[index] instanceof Function){this[index] = this[index].bind(this);}});
+		this.state = {};
 	}
 
 	componentDidMount(){
@@ -39,8 +42,7 @@ export default class TabsExampleSimple extends React.Component{
 				<Tab label="Item Two" >
 					<div>
 						<h2 style={styles.headline}>Tab Two</h2>
-						<p>
-						</p>
+						<p>holas</p>
 					</div>
 				</Tab>
 				<Tab

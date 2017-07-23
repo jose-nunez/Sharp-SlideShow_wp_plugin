@@ -15,7 +15,10 @@
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div id="sharp-slideshow-admin"></div>
+
+<?php /*
 <p>
 	<?php echo do_shortcode('[sharp-slideshow]'); ?>
 </p>
 	
+*/ ?>

@@ -93,6 +93,8 @@ class Sharp_Slideshow_Admin {
 		}
 
 		wp_enqueue_script( $this->plugin_name.'admin');
+		wp_enqueue_script( $this->plugin_name.'public');
+		wp_enqueue_style( $this->plugin_name.'public');
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/sharp-slideshow-admin-display.php';
 	}
 

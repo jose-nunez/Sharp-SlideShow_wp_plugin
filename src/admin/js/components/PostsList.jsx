@@ -15,6 +15,7 @@ export default class PostsList extends React.Component{
 		};
 	}
 	render(){
+
 		return (
 			<div>
 				{this.renderMessage()}
