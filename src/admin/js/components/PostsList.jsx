@@ -18,7 +18,8 @@ export default class PostsList extends React.Component{
 
 		return (
 			<div>
-				{this.renderMessage()}
+				<input type="text" placeholder="Search"/>
+				{this.renderList()}
 			</div>
 		);
 	}
@@ -64,7 +65,7 @@ export default class PostsList extends React.Component{
 		);
 	}
 
-	renderMessage(){
+	renderList(){
 
 		if(this.state.isLoading){
 			return <h2>Cargando mierda!</h2>;

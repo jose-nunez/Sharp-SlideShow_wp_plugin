@@ -4,34 +4,65 @@ import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';injectTapEventPlugin();
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import RaisedButton from 'material-ui/RaisedButton';
+
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
+
 import TabsExampleSimple from 'tabsExampleSimple';
 import SlideShowPreview from 'slideShowPreview';
 
 import 'fontsStyles';
 import 'appStyles';
 
+const styles = {
+	block: {
+		maxWidth: 250,
+	},
+	radioButton: {
+		marginBottom: 16,
+	},
+};
+
 const MyComponent = ()=>{
 	return (
+		<MuiThemeProvider>
 		<div id="sss-main-container" className="clearfix">
 			<h1>Sharp Slideshow</h1>
-			{/*
-				<RaisedButton label="Default" />
-			*/}
+			
+			<div>
+				<RaisedButton label="Add New" /> 
+
+				<SelectField className="select-ui" hintText="Slideshow" value={2} >
+				{/*
+				<SelectField className="select-ui" floatingLabelText="Slideshow" floatingLabelFixed={true} value={2} >
+				*/}
+				  <MenuItem value={1} primaryText="My SS 1" />
+				  <MenuItem value={2} primaryText="My SS 2" />
+				  <MenuItem value={3} primaryText="My SS 3" />
+				</SelectField> 
+
+				<RaisedButton label="Delete" />
+
+			</div>
+			<RadioButtonGroup name="shipSpeed" defaultSelected="automatic">
+				<RadioButton value="automatic" label="Automatic selection" style={styles.radioButton} />
+				<RadioButton value="manual" label="Manual selection" style={styles.radioButton} />
+			</RadioButtonGroup>
 			<div className="right-side">
 				<div className="right-side-inner">
-					<MuiThemeProvider>
-						<SlideShowPreview />
-					</MuiThemeProvider>
+					<SlideShowPreview />
 				</div>
 			</div>
 			<div className="left-side">
 				<div className="left-side-inner">
-					<MuiThemeProvider>
-						<TabsExampleSimple></TabsExampleSimple>
-					</MuiThemeProvider>
+					<TabsExampleSimple></TabsExampleSimple>
 				</div>
 			</div>
 		</div>
+		</MuiThemeProvider>
 	)
 };
 

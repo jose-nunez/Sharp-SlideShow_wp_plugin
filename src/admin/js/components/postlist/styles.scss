@@ -1,4 +1,4 @@
-.post-list > div{	
+/* .post-list > div{	
 	&:nth-child(odd){
 		background-color: white !important;
 	}
@@ -10,12 +10,22 @@
 		// .post-list-checkbox input[type=checkbox]{
 		.post-list-checkbox{
 			top: 6px !important;
-			/* input[type=checkbox]{
-				background-color: white !important;
-			} */
 		}
 		img{
 			border-radius: 0 !important;
 		}
+	}
+} */
+
+.postsListElement{
+	border-radius: 0 !important;
+	.postsListElement-header{
+		div,img{
+			vertical-align: middle !important;
+		}
+	}
+	
+	.btn-add{
+		margin-top: 20px !important;
 	}
 }

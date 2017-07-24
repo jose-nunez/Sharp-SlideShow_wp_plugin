@@ -33,20 +33,17 @@ export default class TabsExampleSimple extends React.Component{
 	render(){
 		return (
 			<Tabs>
-				<Tab label="Item One" >
-					<div>
-						<h2 style={styles.headline}>Tab One</h2>
-						<PostsList />
-					</div>
+				<Tab label="Posts" >
+					<PostsList />
 				</Tab>
-				<Tab label="Item Two" >
+				<Tab label="Pages" >
 					<div>
 						<h2 style={styles.headline}>Tab Two</h2>
 						<p>holas</p>
 					</div>
 				</Tab>
 				<Tab
-					label="onActive"
+					label="Media"
 					data-route="/home"
 					onActive={handleActive}
 				>

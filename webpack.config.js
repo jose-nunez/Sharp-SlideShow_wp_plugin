@@ -25,8 +25,9 @@ module.exports = {
 			/* COMPONENTS ____________________________________________________________________________________ */
 			tabsExampleSimple:	p_resolve('js/components/Tabs.jsx'),
 			postsList:			p_resolve('js/components/PostsList.jsx'),
-				arrayPostsList:		p_resolve('js/components/postlist/ArrayPostsList.jsx'),
-				postsListStyles:	p_resolve('js/components/postlist/styles.scss'),
+				arrayPostsList:			p_resolve('js/components/postlist/ArrayPostsList.jsx'),
+				arrayPostsListElement:	p_resolve('js/components/postlist/ArrayPostsListElement.jsx'),
+				postsListStyles:		p_resolve('js/components/postlist/styles.scss'),
 			slideShowPreview:	p_resolve('js/components/SlideShowPreview.jsx'),
 			/* UTIL ____________________________________________________________________________________ */
 			wordpressAPI:		p_resolve('js/util/WordpressAPI.js'),
