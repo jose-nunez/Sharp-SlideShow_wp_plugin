@@ -4,6 +4,10 @@ import WP_API from 'wordpressAPI';
 import indexArray from 'util';
 import ArrayPostsList from 'arrayPostsList';
 
+import ReactPaginate from 'react-paginate';
+
+var perPage = 10;
+
 export default class PostsList extends React.Component{
 	constructor(props) {
 		super(props);Object.keys(this).forEach(index=>{if(React.Component[index]==undefined && this[index] instanceof Function){this[index] = this[index].bind(this);}});
@@ -11,14 +15,26 @@ export default class PostsList extends React.Component{
 		this.wp_api = new WP_API();
 		this.state = {
 			posts:[],
+			page: 1,
 			isLoading:true, //loads on start
 		};
 	}
 	render(){
 
 		return (
-			<div>
+			<div className="posts-list">
 				<input type="text" placeholder="Search"/>
+				<ReactPaginate previousLabel={"previous"}
+					nextLabel={"next"}
+					breakLabel={<a href="">...</a>}
+					breakClassName={"break-me"}
+					pageCount={this.state.pageCount}
+					marginPagesDisplayed={2}
+					pageRangeDisplayed={5}
+					onPageChange={this.handlePageClick}
+					containerClassName={"pagination"}
+					subContainerClassName={"pages pagination"}
+					activeClassName={"active"} />
 				{this.renderList()}
 			</div>
 		);
@@ -52,8 +68,11 @@ export default class PostsList extends React.Component{
 	}
 
 	retreivePosts(){
-		return this.wp_api.getPosts().then(
-			resp=>(resp.data),
+		return this.wp_api.getPosts(perPage,this.state.page).then(
+			resp=>{
+				this.setState({pageCount:parseInt(resp.headers['x-wp-totalpages'])});
+				return resp.data
+			},
 			err=>{throw new Error(err.response.data.message);}
 		);
 	}
@@ -71,8 +90,18 @@ export default class PostsList extends React.Component{
 			return <h2>Cargando mierda!</h2>;
 		}
 		else{
-			return <ArrayPostsList posts={this.state.posts} images={this.state.images}  />;
+			return (
+				<ArrayPostsList posts={this.state.posts} images={this.state.images}  />
+			);
 		}
 	}
+
+	handlePageClick = (data) => {
+		let page = data.selected+1;
+
+		this.setState({page:page,isLoading:true,posts:[]}, () => {
+			this.retreiveData();
+		});
+	};
 
 }

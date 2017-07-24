@@ -17,15 +17,25 @@
 	}
 } */
 
-.postsListElement{
-	border-radius: 0 !important;
-	.postsListElement-header{
-		div,img{
-			vertical-align: middle !important;
+.posts-list{
+	.postsListElement{
+		border-radius: initial !important;
+		.postsListElement-header{
+			div,img{
+				vertical-align: middle !important;
+			}
+			img{
+				border-radius: initial !important;
+			}
+		}
+		
+		.btn-add{
+			margin-top: 20px !important;
 		}
 	}
 	
-	.btn-add{
-		margin-top: 20px !important;
+	ul.pagination li{
+    	display: inline-block;
+    	margin: 10px;
 	}
 }

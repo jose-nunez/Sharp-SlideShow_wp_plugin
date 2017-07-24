@@ -22,8 +22,8 @@ class WP_API{
 		);
 	}
 
-	getPosts(){
-		var requestUrl = this.API_URL+'posts';
+	getPosts(per_page=10,page=1){
+		var requestUrl = this.API_URL+'posts?per_page='+per_page+'&page='+page;
 		return this.request(requestUrl);
 	}
 
