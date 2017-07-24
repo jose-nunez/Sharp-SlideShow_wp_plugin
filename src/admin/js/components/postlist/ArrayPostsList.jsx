@@ -17,18 +17,21 @@ export default class ArrayPostsList extends React.Component{
 
 		return (
 			<List className="post-list">
-				{ this.props.posts.map((post,index)=>(<ArrayPostsListElement key={index} post={post} images={this.props.images} />))}
-				{/*
-				<ListItem 
-					key={index} 
-					className="post-list-element"
-					primaryText={post.title.rendered}
-					// leftCheckbox={<Checkbox className="post-list-checkbox" />} 
-					leftAvatar={post.featured_media? <Avatar src={this.props.images[post.featured_media].media_details.sizes.thumbnail.source_url} /> : null}
-					// rightAvatar={post.featured_media? <Avatar src={this.props.images[post.featured_media].media_details.sizes.thumbnail.source_url} /> : null}
-					
-				/>
-				*/}
+				{this.props.posts.map((post,index)=>{
+					let title = post.title.rendered;
+					let img = null,imgobj,img_sizes;
+					if(post.featured_media && (imgobj = this.props.images[post.featured_media]) ){ 
+						if(img_sizes = imgobj.media_details.sizes){
+							img = img_sizes.thumbnail.source_url;
+						}
+						else if(imgobj.source_url){
+							img = imgobj.source_url;
+						}
+					}
+					return (
+						<ArrayPostsListElement key={index} post={{title:title,img:img}} />
+					);
+				})}
 			</List>
 		);
 	}

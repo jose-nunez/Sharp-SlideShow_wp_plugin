@@ -22,8 +22,8 @@ export default class ArrayPostsListElement extends React.Component{
 			return (
 				<Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="postsListElement">
 					<CardHeader
-					  title={post.title.rendered}
-					  avatar={post.featured_media? this.props.images[post.featured_media].media_details.sizes.thumbnail.source_url : null}
+					  title={post.title}
+					  avatar={post.img}
 					  actAsExpander={true}
 					  showExpandableButton={false}
 					  className = "postsListElement-header"

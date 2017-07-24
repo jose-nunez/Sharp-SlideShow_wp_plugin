@@ -23,7 +23,6 @@ export default class PostsList extends React.Component{
 
 		return (
 			<div className="posts-list">
-				<input type="text" placeholder="Search"/>
 				<ReactPaginate previousLabel={"previous"}
 					nextLabel={"next"}
 					breakLabel={<a href="">...</a>}

@@ -34,8 +34,8 @@
 		}
 	}
 	
-	ul.pagination li{
-    	display: inline-block;
-    	margin: 10px;
+	ul.pagination{
+	    display: flex;
+		justify-content: space-between;
 	}
 }
