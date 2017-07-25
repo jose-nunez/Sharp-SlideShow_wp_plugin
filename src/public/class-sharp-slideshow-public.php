@@ -47,11 +47,11 @@ class Sharp_Slideshow_Public {
 	 * @param      string    $plugin_name       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct( $plugin_name, $version, $options ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
+		$this->options = $options;
 	}
 
 	/**
@@ -76,10 +76,10 @@ class Sharp_Slideshow_Public {
 	* Extends Endpoints API
 	* http://joannecrowther.local/wp-json/sharp-slideshow/v1/slideshow
 	*/
-	public function extend_API( $data ) {
-		register_rest_route( 
-			'sharp-slideshow/v1', 
-			'/slideshow', 
+	public function extend_API($data) {
+		register_rest_route(
+			$this->options['api_namespace'],
+			'/slideshow',
 			array(
 				'methods' => 'GET',
 				'callback' => array($this,'shortcode_api'),
@@ -119,14 +119,41 @@ class Sharp_Slideshow_Public {
 	private function display(){
 		ob_start();
 
-			$slides = array(
+			/*$slides = array(
 				array('title'=>'title 1','caption'=>'este es el caption 1','img_url'=>plugin_dir_url( __FILE__ ) .'/img/img1.jpg','link'=>'est-quia-recusandae-sed-facere-autem'),
 				array('title'=>'title 2','caption'=>'este es el caption 2','img_url'=>plugin_dir_url( __FILE__ ) .'/img/img2.jpg','link'=>'natus-est-est-autem-fuga/'),
 				array('title'=>'title 3','caption'=>'este es el caption 3','img_url'=>plugin_dir_url( __FILE__ ) .'/img/img3.jpg','link'=>'http://www.josenunez.org','target'=>'_blank'),
-			);
+			);*/
 
+			$slides = $this->prepare_slides();
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/sharp-slideshow-public-display.php';
 		return ob_get_clean();
+	}
+
+	/**
+	 * Loads the content for the slideshow
+	 *
+	 * @since    1.0.0
+	 */
+	private function prepare_slides(){
+		$sharp_slideshow_data = get_option('sharp_slideshow_data');
+		$pre_slides = $sharp_slideshow_data['slideshows']['slideshow_1']['slides'];
+
+		$args = array('include'=>implode(',',array($pre_slides[1]['id'],$pre_slides[2]['id'],$pre_slides[3]['id'])),);
+		$posts_array = get_posts( $args );
+
+		$slides = array();
+		foreach ($posts_array as $key => $post) {
+			$slides[] = array(
+				'title'=>$post->title,
+				'caption'=>$post->post_excerpt,
+				'img_url'=>get_the_post_thumbnail_url($post->ID,'large'),
+				'link'=>get_permalink($post->ID),
+			);
+		}
+
+		return $slides;
+
 	}
 
 }

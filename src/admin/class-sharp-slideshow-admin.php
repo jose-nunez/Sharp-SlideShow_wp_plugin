@@ -47,7 +47,7 @@ class Sharp_Slideshow_Admin {
 	 * @param      string    $plugin_name       The name of this plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct( $plugin_name, $version, $options ) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
@@ -100,5 +100,17 @@ class Sharp_Slideshow_Admin {
 
 	public function register_settings(){
 		// register_setting('sharp_slideshow_settings','sharp_slideshow_VARNAME');
+	}
+
+	/**
+	* Extends Endpoints API
+	* http://joannecrowther.local/wp-json/sharp-slideshow/v1/slideshow
+	*/
+	public function extend_API($data) {
+		register_rest_route($this->options['api_namespace'],
+			'/slideshow2',
+			array('methods' => 'GET','callback' => function(){return "holi";},
+			) 
+		);	
 	}
 }

@@ -71,6 +71,10 @@ class Sharp_Slideshow {
 		$this->plugin_name = 'sharp-slideshow';
 		$this->version = '1.0.0';
 
+		$this->options = array(
+			'api_namespace' => 'sharp-slideshow/v1',
+		);
+
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
@@ -129,11 +133,16 @@ class Sharp_Slideshow {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Sharp_Slideshow_Admin( $this->get_plugin_name(), $this->get_version() );
+		$options = array(
+			'api_namespace' => $this->options->api_namespace,
+		);
+
+		$plugin_admin = new Sharp_Slideshow_Admin( $this->get_plugin_name(), $this->get_version() , $options );
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		
+		$this->loader->add_action( 'rest_api_init', $plugin_admin, 'extend_API' );
+
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_menu' );
 		$this->loader->add_action( 'admin_init', $plugin_admin, 'register_settings' );
 
@@ -148,7 +157,11 @@ class Sharp_Slideshow {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Sharp_Slideshow_Public( $this->get_plugin_name(), $this->get_version() );
+		$options = array(
+			'api_namespace' => $this->options['api_namespace'],
+		);
+
+		$plugin_public = new Sharp_Slideshow_Public( $this->get_plugin_name(), $this->get_version() , $options);
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );

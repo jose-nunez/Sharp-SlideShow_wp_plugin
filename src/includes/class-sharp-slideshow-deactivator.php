@@ -30,7 +30,7 @@ class Sharp_Slideshow_Deactivator {
 	 * @since    1.0.0
 	 */
 	public static function deactivate() {
-
+		delete_option('sharp_slideshow_data');
 	}
 
 }
