@@ -1,3 +1,4 @@
+
 .clearfix:after{
 	content: " ";
 	display: block; 
@@ -5,8 +6,21 @@
 	clear: both;
 }
 
+.no-select,.no-select-all *{user-select:none;}
+
+.spinner.block{
+	float:none;
+	display:block;
+	max-width: 40px;
+	margin: 20px auto;
+}
 
 #sharp-slideshow-admin{
+	
+	a:focus{
+		box-shadow: none;
+	}
+	
 	line-height: initial;
 	// family: 'Roboto';
 

@@ -8,7 +8,6 @@ import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 export default class ArrayPostsListElement extends React.Component{
 	constructor(props){
 		super(props);
-		// Object.keys(this).forEach(index=>{if(React.Component[index]==undefined && this[index] instanceof Function){this[index] = this[index].bind(this);}});
 		this.state = {expanded:false,excerpt:true,newtab:false};
 	}
 

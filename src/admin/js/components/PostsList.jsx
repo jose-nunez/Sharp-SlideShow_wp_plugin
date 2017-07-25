@@ -1,16 +1,17 @@
 import React from 'react';
+import ReactPaginate from 'react-paginate';
+import shortid  from 'shortid';
 
 import WP_API from 'wordpressAPI';
 import indexArray from 'util';
 import ArrayPostsList from 'arrayPostsList';
 
-import ReactPaginate from 'react-paginate';
 
 var perPage = 10;
 
 export default class PostsList extends React.Component{
 	constructor(props) {
-		super(props);Object.keys(this).forEach(index=>{if(React.Component[index]==undefined && this[index] instanceof Function){this[index] = this[index].bind(this);}});
+		super(props);
 		
 		this.wp_api = new WP_API();
 		this.state = {
@@ -18,20 +19,24 @@ export default class PostsList extends React.Component{
 			page: 1,
 			isLoading:true, //loads on start
 		};
+
+		this.retrivingData=null;
 	}
 	render(){
 
 		return (
 			<div className="posts-list">
-				<ReactPaginate previousLabel={"previous"}
-					nextLabel={"next"}
-					breakLabel={<a href="">...</a>}
-					breakClassName={"break-me"}
+				<ReactPaginate
+					onPageChange={this.handlePageClick}
 					pageCount={this.state.pageCount}
 					marginPagesDisplayed={2}
 					pageRangeDisplayed={5}
-					onPageChange={this.handlePageClick}
-					containerClassName={"pagination"}
+					
+					previousLabel={"previous"}
+					nextLabel={"next"}
+					breakLabel={<a href="">...</a>}
+					breakClassName={"break-me"}
+					containerClassName={"pagination no-select-all"}
 					subContainerClassName={"pages pagination"}
 					activeClassName={"active"} />
 				{this.renderList()}
@@ -44,9 +49,14 @@ export default class PostsList extends React.Component{
 	}
 	
 	retreiveData(){
-
+		var processID = shortid.generate();
+		this.retrivingData = processID;
+		
 		this.retreivePosts().then(
 			posts=>{
+				
+				if(this.retrivingData !== processID)return;
+
 				let ids = posts.
 				filter(
 					post=>(post.featured_media?true:false)
@@ -62,7 +72,10 @@ export default class PostsList extends React.Component{
 					err=>{throw err}
 				);
 			},
-			err=>{throw err}
+			err=>{
+				if(retrivingData !== processID) return; 
+				throw err;
+			}
 		)
 	}
 
@@ -86,7 +99,8 @@ export default class PostsList extends React.Component{
 	renderList(){
 
 		if(this.state.isLoading){
-			return <h2>Cargando mierda!</h2>;
+			// return <h2>Cargando mierda!</h2>;
+			return <span className="spinner block is-active"></span>;
 		}
 		else{
 			return (

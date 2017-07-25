@@ -27,9 +27,6 @@ export default class TabsExampleSimple extends React.Component{
 		this.state = {};
 	}
 
-	componentDidMount(){
-	}
-
 	render(){
 		return (
 			<Tabs>
