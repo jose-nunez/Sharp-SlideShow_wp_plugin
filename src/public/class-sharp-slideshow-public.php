@@ -151,9 +151,7 @@ class Sharp_Slideshow_Public {
 				'link'=>get_permalink($post->ID),
 			);
 		}
-
 		return $slides;
-
 	}
 	function store_excerpt_length($length) {
 		update_option( 'sharp_slideshow_excerpt_length', $length );
