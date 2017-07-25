@@ -31,6 +31,8 @@ class Sharp_Slideshow_Activator {
 	 */
 	public static function activate() {
 		add_option('sharp_slideshow_data',array());
+		add_option('sharp_slideshow_excerpt_length');
+
 
 		update_option('sharp_slideshow_data',array(
 			'slideshows'=>array(

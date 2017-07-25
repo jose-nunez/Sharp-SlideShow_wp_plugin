@@ -13,11 +13,5 @@
  */
 ?>
 
-<?php /*
-<pre>
-	<?php print_r(get_option('sharp_slideshow_data')); ?>
-</pre>
-*/ ?>
-
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
 <div id="sharp-slideshow-admin"></div>

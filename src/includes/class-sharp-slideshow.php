@@ -166,6 +166,7 @@ class Sharp_Slideshow {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_action( 'rest_api_init', $plugin_public, 'extend_API' );
+		$this->loader->add_filter( 'excerpt_length',$plugin_public,'store_excerpt_length',9999);
 		$this->loader->add_shortcode('sharp-slideshow', $plugin_public, 'shortcode' );
 	}
 

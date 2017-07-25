@@ -139,14 +139,14 @@ class Sharp_Slideshow_Public {
 		$sharp_slideshow_data = get_option('sharp_slideshow_data');
 		$pre_slides = $sharp_slideshow_data['slideshows']['slideshow_1']['slides'];
 
-		$args = array('include'=>implode(',',array($pre_slides[1]['id'],$pre_slides[2]['id'],$pre_slides[3]['id'])),);
+		$args = array('include'=>implode(',',array($pre_slides[0]['id'],$pre_slides[1]['id'],$pre_slides[2]['id'])),);
 		$posts_array = get_posts( $args );
 
 		$slides = array();
 		foreach ($posts_array as $key => $post) {
 			$slides[] = array(
-				'title'=>$post->title,
-				'caption'=>$post->post_excerpt,
+				'title'=>$post->post_title,
+				'caption'=> $post->post_excerpt ? $post->post_excerpt : wp_kses_post(wp_trim_words( $post->post_content,intval(get_option('sharp_slideshow_excerpt_length')))),
 				'img_url'=>get_the_post_thumbnail_url($post->ID,'large'),
 				'link'=>get_permalink($post->ID),
 			);
@@ -154,6 +154,10 @@ class Sharp_Slideshow_Public {
 
 		return $slides;
 
+	}
+	function store_excerpt_length($length) {
+		update_option( 'sharp_slideshow_excerpt_length', $length );
+		return $length;
 	}
 
 }

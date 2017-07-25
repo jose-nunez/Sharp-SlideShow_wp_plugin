@@ -31,6 +31,7 @@ class Sharp_Slideshow_Deactivator {
 	 */
 	public static function deactivate() {
 		delete_option('sharp_slideshow_data');
+		delete_option('sharp_slideshow_excerpt_length');
 	}
 
 }
