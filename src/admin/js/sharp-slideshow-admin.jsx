@@ -15,7 +15,8 @@ import SlideShowPreview from 'slideShowPreview';
 import 'fontsStyles';
 import 'appStyles';
 
-var slideShowID = 6766767,slideShowID_2=2423423;
+// var slideShowID = 1313;
+var slideShowID = 1212;
 
 const styles = {
 	block: {
@@ -44,7 +45,6 @@ const MyComponent = ()=>{
 			<div className="right-side"><div className="right-side-inner">
 				<h2>Preview</h2>
 				<SlideShowPreview slideShowID={slideShowID} />
-				<SlideShowPreview slideShowID={slideShowID_2} />
 			</div></div>
 			<div className="left-side"><div className="left-side-inner">
 				<RadioButtonGroup name="shipSpeed" defaultSelected="automatic">

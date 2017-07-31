@@ -88,12 +88,10 @@ class Sharp_Slideshow_Public {
 	}
 
 	public function get_slides_api($data){
-		//$slideShowID = $this->get_slideshow_id($data['slideShowName']);
 		return $this->get_slides($data['slideShowID']);
 	}
 	public function shortcode_api($data){
 		// return htmlentities($this->display());
-		//$slideShowID = $this->get_slideshow_id($data['slideShowName']);
 		return $this->display($data['slideShowID']);
 	}
 
@@ -106,6 +104,7 @@ class Sharp_Slideshow_Public {
 	public function shortcode($atts, $content=null, $code=""){
 		
 		$attributes = shortcode_atts(array('name' => 0,),$atts);
+
 		$slideShowID = $this->get_slideshow_id($attributes['name']);
 		if($slideShowID===0) return;
 
@@ -118,8 +117,16 @@ class Sharp_Slideshow_Public {
 		return $this->display($slideShowID);
 	}
 
-	private function get_slideshow_id($slideShowName){
-		return rand(1,9999);
+	private function get_slideshow_id($slideShowName=-1){
+		$sharp_slideshow_data = get_option('sharp_slideshow_data');
+
+		if(is_string($sharp_slideshow_data['slideshows'][$slideShowName])){ //is the name!
+			return intval($sharp_slideshow_data['slideshows'][$slideShowName]);
+		}
+		else if(is_array($sharp_slideshow_data['slideshows'][$slideShowName])){ //is the ID!
+			return $slideShowName;
+		}
+		else return 0;
 	}
 
 	/**
@@ -141,9 +148,13 @@ class Sharp_Slideshow_Public {
 	 */
 	private function get_slides($slideShowID){
 		$sharp_slideshow_data = get_option('sharp_slideshow_data');
-		$pre_slides = $sharp_slideshow_data['slideshows']['slideshow_1']['slides'];
+		$pre_slides = $sharp_slideshow_data['slideshows'][''.$slideShowID]['slides'];
 		
-		$args = array('include'=>implode(',',array($pre_slides[0]['id'],$pre_slides[1]['id'],$pre_slides[2]['id'])),);
+		$posts_ids = '';
+		foreach ($pre_slides as $key => $slide){$posts_ids .= $slide['id'].',';}
+		rtrim($posts_ids,',');
+
+		$args = array('include'=>$posts_ids);
 		$posts_array = get_posts( $args );
 
 		$slides = array();

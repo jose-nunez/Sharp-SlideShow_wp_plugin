@@ -36,8 +36,9 @@ class Sharp_Slideshow_Activator {
 
 		update_option('sharp_slideshow_data',array(
 			'slideshows'=>array(
-				'slideshow_1'=>array(
-					'name' =>'Mi sharpito',
+				'Mi_sharpito_1'=>'1313',
+				'1313'=>array(
+					'name' =>'Mi_sharpito_1',
 					'slides'=>array(
 						array( //1
 							'type' =>'post', // post, page, custom post
@@ -54,6 +55,36 @@ class Sharp_Slideshow_Activator {
 						array( //3
 							'type' =>'post',
 							'id'=>'348',
+							'excerpt'=>true,
+							'new_page'=>false,
+						),
+					),
+				),
+				'Mi_sharpito_2'=>'1212',
+				'1212'=>array(
+					'name' =>'Mi_sharpito_2',
+					'slides'=>array(
+						array( //1
+							'type' =>'post', // post, page, custom post
+							'id'=>'412',
+							'excerpt'=>true,
+							'new_page'=>false,
+						),
+						array( //2
+							'type' =>'post',
+							'id'=>'452',
+							'excerpt'=>true,
+							'new_page'=>false,
+						),
+						array( //3
+							'type' =>'post',
+							'id'=>'342',
+							'excerpt'=>true,
+							'new_page'=>false,
+						),
+						array( //4
+							'type' =>'post',
+							'id'=>'478',
 							'excerpt'=>true,
 							'new_page'=>false,
 						),
