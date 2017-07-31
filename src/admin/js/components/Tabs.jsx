@@ -5,6 +5,7 @@ import Slider from 'material-ui/Slider';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import PostsList from 'postsList';
+import RemoveSlidesControl from 'removeSlidesControl';
 
 import DOMPurify from 'dompurify';
 
@@ -30,26 +31,15 @@ export default class TabsExampleSimple extends React.Component{
 	render(){
 		return (
 			<Tabs>
+				<Tab label="Current Slides" >
+					<RemoveSlidesControl />
+				</Tab>
 				<Tab label="Posts" >
 					<PostsList />
 				</Tab>
 				<Tab label="Pages" >
-					<div>
-						<h2 style={styles.headline}>Tab Two</h2>
-						<p>holas</p>
-					</div>
 				</Tab>
-				<Tab
-					label="Media"
-					data-route="/home"
-					onActive={handleActive}
-				>
-					<div>
-						<h2 style={styles.headline}>Tab Three</h2>
-						<p>
-							This is a third example tab.
-						</p>
-					</div>
+				<Tab label="Media" >
 				</Tab>
 			</Tabs>
 		);	

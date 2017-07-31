@@ -24,11 +24,13 @@ module.exports = {
 			appStyles: 		p_resolve('scss/sharp-slideshow-admin.scss'),
 			/* COMPONENTS ____________________________________________________________________________________ */
 			tabsExampleSimple:	p_resolve('js/components/Tabs.jsx'),
+			slideShowPreview:	p_resolve('js/components/SlideShowPreview.jsx'),
 			postsList:			p_resolve('js/components/PostsList.jsx'),
 				arrayPostsList:			p_resolve('js/components/postlist/ArrayPostsList.jsx'),
 				arrayPostsListElement:	p_resolve('js/components/postlist/ArrayPostsListElement.jsx'),
 				postsListStyles:		p_resolve('js/components/postlist/styles.scss'),
-			slideShowPreview:	p_resolve('js/components/SlideShowPreview.jsx'),
+			removeSlidesControl:	p_resolve('js/components/RemoveSlidesControl.jsx'),
+				removeSlideElement:	p_resolve('js/components/removeSlides/RemoveSlideElement.jsx'),
 			/* UTIL ____________________________________________________________________________________ */
 			wordpressAPI:		p_resolve('js/util/WordpressAPI.js'),
 			sharpSlideShowAPI:	p_resolve('js/util/SharpSlideShowAPI.js'),

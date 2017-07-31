@@ -77,19 +77,19 @@ class Sharp_Slideshow_Public {
 	* http://joannecrowther.local/wp-json/sharp-slideshow/v1/slideshow
 	*/
 	public function extend_API($data) {
-		register_rest_route(
-			$this->options['api_namespace'],
-			'/slideshow',
-			array(
-				'methods' => 'GET',
-				'callback' => array($this,'shortcode_api'),
-			) 
-		);	
+		register_rest_route($this->options['api_namespace'],
+			'/slideshow',array('methods' => 'GET','callback' => array($this,'shortcode_api')) 
+		);
+
+		register_rest_route($this->options['api_namespace'],
+			'/slides',array('methods' => 'GET','callback' => array($this,'get_slides_api'))
+		);
+			
 	}
 
-	/**
-	 * 
-	 */
+	public function get_slides_api($atts, $content=null, $code=""){
+		return $this->get_slides();
+	}
 	public function shortcode_api($atts, $content=null, $code=""){
 		// return htmlentities($this->display());
 		return $this->display();
@@ -125,7 +125,7 @@ class Sharp_Slideshow_Public {
 				array('title'=>'title 3','caption'=>'este es el caption 3','img_url'=>plugin_dir_url( __FILE__ ) .'/img/img3.jpg','link'=>'http://www.josenunez.org','target'=>'_blank'),
 			);*/
 
-			$slides = $this->prepare_slides();
+			$slides = $this->get_slides();
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/sharp-slideshow-public-display.php';
 		return ob_get_clean();
 	}
@@ -135,10 +135,10 @@ class Sharp_Slideshow_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	private function prepare_slides(){
+	private function get_slides(){
 		$sharp_slideshow_data = get_option('sharp_slideshow_data');
 		$pre_slides = $sharp_slideshow_data['slideshows']['slideshow_1']['slides'];
-
+		
 		$args = array('include'=>implode(',',array($pre_slides[0]['id'],$pre_slides[1]['id'],$pre_slides[2]['id'])),);
 		$posts_array = get_posts( $args );
 

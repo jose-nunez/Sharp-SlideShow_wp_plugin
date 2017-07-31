@@ -7,13 +7,13 @@ import SharpSlideShow_API from 'sharpSlideShowAPI';
 
 export default class SlideShowPreview extends React.Component{
 	constructor(props) {
-		super(props);Object.keys(this).forEach(index=>{if(React.Component[index]==undefined && this[index] instanceof Function){this[index] = this[index].bind(this);}});
+		super(props);
 		
 		this.sharpslideshow_api = new SharpSlideShow_API();
 		this.state = {markup:''};
 	}
 	
-	retreiveData(){
+	retreiveData = ()=>{
 		this.retreiveSlideShow().then(
 			markup=>{
 				this.setState({markup:markup});
@@ -23,18 +23,18 @@ export default class SlideShowPreview extends React.Component{
 		)
 	}
 
-	componentDidMount(){
+	componentDidMount = ()=>{
 		this.retreiveData();
 	}
 
-	retreiveSlideShow(){
+	retreiveSlideShow = ()=>{
 		return this.sharpslideshow_api.getSlideShow().then(
 			resp=>(resp.data),
 			err=>{throw err;}
 		);
 	}
 
-	render(){
+	render = ()=>{
 		return (
 			// <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.markup)}}></p>
 			<p dangerouslySetInnerHTML={{__html: this.state.markup }}></p>
