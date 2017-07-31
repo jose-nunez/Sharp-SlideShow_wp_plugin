@@ -105,7 +105,7 @@ class Sharp_Slideshow_Public {
 		wp_enqueue_style( $this->plugin_name.'public');
 		wp_enqueue_script($this->plugin_name.'public');
 
-		$js = "intialice(jQuery);";
+		$js = "intialice_sharpSlideShow(jQuery);";
 		wp_add_inline_script($this->plugin_name.'public',$js);
 		
 		return $this->display();

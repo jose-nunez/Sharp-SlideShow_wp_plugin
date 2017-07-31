@@ -24,22 +24,22 @@ function handleActive(tab) {
 
 export default class TabsExampleSimple extends React.Component{
 	constructor(props) {
-		super(props);Object.keys(this).forEach(index=>{if(React.Component[index]==undefined && this[index] instanceof Function){this[index] = this[index].bind(this);}});
+		super(props);
 		this.state = {};
 	}
 
 	render(){
 		return (
 			<Tabs>
-				<Tab label="Current Slides" >
-					<RemoveSlidesControl />
-				</Tab>
 				<Tab label="Posts" >
 					<PostsList />
 				</Tab>
 				<Tab label="Pages" >
 				</Tab>
 				<Tab label="Media" >
+				</Tab>
+				<Tab label="Current Slides" >
+					<RemoveSlidesControl />
 				</Tab>
 			</Tabs>
 		);	

@@ -26,12 +26,12 @@
 			</a>
 		<?php endforeach; ?>
 
-		<a class="prev no-select" onclick="plusSlides(-1)">&#10094;</a>
-		<a class="next no-select" onclick="plusSlides(1)">&#10095;</a>
+		<a class="prev no-select" onclick="sharpSlideShow.plusSlides(-1)">&#10094;</a>
+		<a class="next no-select" onclick="sharpSlideShow.plusSlides(1)">&#10095;</a>
 	</div>
 	<div style="text-align:center">
-		<span class="dot" onclick="currentSlide(1)"></span> 
-		<span class="dot" onclick="currentSlide(2)"></span> 
-		<span class="dot" onclick="currentSlide(3)"></span> 
+		<span class="dot" onclick="sharpSlideShow.currentSlide(1)"></span> 
+		<span class="dot" onclick="sharpSlideShow.currentSlide(2)"></span> 
+		<span class="dot" onclick="sharpSlideShow.currentSlide(3)"></span> 
 	</div>
 </div>

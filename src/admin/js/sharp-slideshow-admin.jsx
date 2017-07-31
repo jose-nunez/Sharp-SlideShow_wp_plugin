@@ -40,6 +40,7 @@ const MyComponent = ()=>{
 			</div>
 
 			<div className="right-side"><div className="right-side-inner">
+				<h2>Preview</h2>
 				<SlideShowPreview />
 			</div></div>
 			<div className="left-side"><div className="left-side-inner">

@@ -13,19 +13,20 @@ export default class SlideShowPreview extends React.Component{
 		this.state = {markup:''};
 	}
 	
+	componentDidMount = ()=>{
+		this.retreiveData();
+	}
+	
 	retreiveData = ()=>{
 		this.retreiveSlideShow().then(
 			markup=>{
 				this.setState({markup:markup});
-				intialice(jQuery); //CALLS THE EXTERNAL FUNCTION TO INITIALICE THE SLIDES
+				intialice_sharpSlideShow(jQuery); //CALLS THE EXTERNAL FUNCTION TO INITIALICE THE SLIDES
 			},
 			err=>{throw err}
 		)
 	}
 
-	componentDidMount = ()=>{
-		this.retreiveData();
-	}
 
 	retreiveSlideShow = ()=>{
 		return this.sharpslideshow_api.getSlideShow().then(
@@ -34,10 +35,19 @@ export default class SlideShowPreview extends React.Component{
 		);
 	}
 
+	refresh = ()=>{
+		this.setState({markup:''});
+		this.retreiveData();
+	}
+	
+
 	render = ()=>{
 		return (
+			<div>
+				<RaisedButton label="Refresh" onTouchTap={this.refresh} />
+				<p dangerouslySetInnerHTML={{__html: this.state.markup }}></p>
+			</div>
 			// <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.markup)}}></p>
-			<p dangerouslySetInnerHTML={{__html: this.state.markup }}></p>
 		);
 	}
 }
