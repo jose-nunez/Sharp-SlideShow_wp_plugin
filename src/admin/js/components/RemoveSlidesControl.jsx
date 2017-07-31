@@ -19,7 +19,7 @@ export default class RemoveSlidesControl extends React.Component{
 	}
 	
 	retreiveSlides = ()=>{
-		return this.sharpslideshow_api.getSlides().then(
+		return this.sharpslideshow_api.getSlides(this.props.slideShowID).then(
 			({data})=>{
 				this.setState({slides:data});
 			}

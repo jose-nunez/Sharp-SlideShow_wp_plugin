@@ -15,8 +15,8 @@ class SharpSlideShow_API{
 		);
 	}
 
-	getSlideShow(){return this.request(this.API_URL+'slideshow');}
+	getSlideShow(slideShowID){return this.request(this.API_URL+'slideshow/'+slideShowID);}
 	
-	getSlides(){return this.request(this.API_URL+'slides');}
+	getSlides(slideShowID){return this.request(this.API_URL+'slides/'+slideShowID);}
 }
 export default SharpSlideShow_API;

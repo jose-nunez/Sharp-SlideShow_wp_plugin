@@ -13,25 +13,30 @@
  */
 ?>
 
-<div class="sharp-slideshow">
-	<div class="slideshow-container">
+<?php /*
+	$slideShowID
+	$slides
+*/ ?>
+
+<div class="sharp-slideshow sss-<?=$slideShowID?>">
+	<div class="sss-container">
 
 		<?php foreach ($slides as $key => $slide): ?>
-			<a href="<?= $slide['link'] ?>" target="<?= $slide['target'] ?>">
-				<div class="mySlides fade">
+				<div class="sss-slide sss-<?=$slideShowID?> fade">
 					<div class="numbertext"><?=($key+1); ?> / <?=count($slides); ?></div>
-					<img src="<?= $slide['img_url'] ?>" style="width:100%">
-					<div class="text"><?= $slide['title'].' '.$slide['caption'] ?></div>
+					<a href="<?= $slide['link'] ?>" target="<?= $slide['target'] ?>">
+						<img src="<?= $slide['img_url'] ?>" style="width:100%">
+						<div class="text"><?= $slide['title'].' '.$slide['caption'] ?></div>
+					</a>
 				</div>
-			</a>
 		<?php endforeach; ?>
 
-		<a class="prev no-select" onclick="sharpSlideShow.plusSlides(-1)">&#10094;</a>
-		<a class="next no-select" onclick="sharpSlideShow.plusSlides(1)">&#10095;</a>
+		<a class="prev no-select" onclick="sharpSlideShow[<?=$slideShowID?>].plusSlides(-1)">&#10094;</a>
+		<a class="next no-select" onclick="sharpSlideShow[<?=$slideShowID?>].plusSlides(1)">&#10095;</a>
 	</div>
 	<div style="text-align:center">
-		<span class="dot" onclick="sharpSlideShow.currentSlide(1)"></span> 
-		<span class="dot" onclick="sharpSlideShow.currentSlide(2)"></span> 
-		<span class="dot" onclick="sharpSlideShow.currentSlide(3)"></span> 
+		<span class="sss-dot sss-dot-<?=$slideShowID?>" onclick="sharpSlideShow[<?=$slideShowID?>].currentSlide(1)"></span> 
+		<span class="sss-dot sss-dot-<?=$slideShowID?>" onclick="sharpSlideShow[<?=$slideShowID?>].currentSlide(2)"></span> 
+		<span class="sss-dot sss-dot-<?=$slideShowID?>" onclick="sharpSlideShow[<?=$slideShowID?>].currentSlide(3)"></span> 
 	</div>
 </div>

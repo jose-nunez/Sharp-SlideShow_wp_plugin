@@ -11,13 +11,13 @@ div.sharp-slideshow{
 	* {box-sizing:border-box}
 
 	/* Slideshow container */
-	.slideshow-container {
+	.sss-container {
 		max-width: 1000px;
 		position: relative;
 		margin: auto;
 	}
-
-	.mySlides {
+	
+	.sss-slide {
 			display: none;
 	}
 
@@ -68,7 +68,7 @@ div.sharp-slideshow{
 	}
 
 	/* The dots/bullets/indicators */
-	.dot {
+	.sss-dot {
 		cursor:pointer;
 		height: 13px;
 		width: 13px;
@@ -79,7 +79,7 @@ div.sharp-slideshow{
 		transition: background-color 0.6s ease;
 	}
 
-	.active, .dot:hover {
+	.active, .sss-dot:hover {
 		background-color: #717171;
 	}
 

@@ -78,21 +78,23 @@ class Sharp_Slideshow_Public {
 	*/
 	public function extend_API($data) {
 		register_rest_route($this->options['api_namespace'],
-			'/slideshow',array('methods' => 'GET','callback' => array($this,'shortcode_api')) 
+			'/slideshow/(?P<slideShowID>[a-zA-Z0-9-]+)',array('methods' => 'GET','callback' => array($this,'shortcode_api')) 
 		);
 
 		register_rest_route($this->options['api_namespace'],
-			'/slides',array('methods' => 'GET','callback' => array($this,'get_slides_api'))
+			'/slides/(?P<slideShowID>[a-zA-Z0-9-]+)',array('methods' => 'GET','callback' => array($this,'get_slides_api'))
 		);
 			
 	}
 
-	public function get_slides_api($atts, $content=null, $code=""){
-		return $this->get_slides();
+	public function get_slides_api($data){
+		//$slideShowID = $this->get_slideshow_id($data['slideShowName']);
+		return $this->get_slides($data['slideShowID']);
 	}
-	public function shortcode_api($atts, $content=null, $code=""){
+	public function shortcode_api($data){
 		// return htmlentities($this->display());
-		return $this->display();
+		//$slideShowID = $this->get_slideshow_id($data['slideShowName']);
+		return $this->display($data['slideShowID']);
 	}
 
 	/**
@@ -102,13 +104,22 @@ class Sharp_Slideshow_Public {
 	 * @since    1.0.0
 	 */
 	public function shortcode($atts, $content=null, $code=""){
+		
+		$attributes = shortcode_atts(array('name' => 0,),$atts);
+		$slideShowID = $this->get_slideshow_id($attributes['name']);
+		if($slideShowID===0) return;
+
 		wp_enqueue_style( $this->plugin_name.'public');
 		wp_enqueue_script($this->plugin_name.'public');
 
-		$js = "intialice_sharpSlideShow(jQuery);";
+		$js = "intialice_sharpSlideShow(".$slideShowID.");";
 		wp_add_inline_script($this->plugin_name.'public',$js);
 		
-		return $this->display();
+		return $this->display($slideShowID);
+	}
+
+	private function get_slideshow_id($slideShowName){
+		return rand(1,9999);
 	}
 
 	/**
@@ -116,16 +127,9 @@ class Sharp_Slideshow_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	private function display(){
+	private function display($slideShowID){
 		ob_start();
-
-			/*$slides = array(
-				array('title'=>'title 1','caption'=>'este es el caption 1','img_url'=>plugin_dir_url( __FILE__ ) .'/img/img1.jpg','link'=>'est-quia-recusandae-sed-facere-autem'),
-				array('title'=>'title 2','caption'=>'este es el caption 2','img_url'=>plugin_dir_url( __FILE__ ) .'/img/img2.jpg','link'=>'natus-est-est-autem-fuga/'),
-				array('title'=>'title 3','caption'=>'este es el caption 3','img_url'=>plugin_dir_url( __FILE__ ) .'/img/img3.jpg','link'=>'http://www.josenunez.org','target'=>'_blank'),
-			);*/
-
-			$slides = $this->get_slides();
+			$slides = $this->get_slides($slideShowID);
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/sharp-slideshow-public-display.php';
 		return ob_get_clean();
 	}
@@ -135,7 +139,7 @@ class Sharp_Slideshow_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	private function get_slides(){
+	private function get_slides($slideShowID){
 		$sharp_slideshow_data = get_option('sharp_slideshow_data');
 		$pre_slides = $sharp_slideshow_data['slideshows']['slideshow_1']['slides'];
 		

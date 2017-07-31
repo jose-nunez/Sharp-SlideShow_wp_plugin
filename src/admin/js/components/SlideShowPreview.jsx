@@ -21,7 +21,7 @@ export default class SlideShowPreview extends React.Component{
 		this.retreiveSlideShow().then(
 			markup=>{
 				this.setState({markup:markup});
-				intialice_sharpSlideShow(jQuery); //CALLS THE EXTERNAL FUNCTION TO INITIALICE THE SLIDES
+				intialice_sharpSlideShow(this.props.slideShowID); //CALLS THE EXTERNAL FUNCTION TO INITIALICE THE SLIDES
 			},
 			err=>{throw err}
 		)
@@ -29,7 +29,7 @@ export default class SlideShowPreview extends React.Component{
 
 
 	retreiveSlideShow = ()=>{
-		return this.sharpslideshow_api.getSlideShow().then(
+		return this.sharpslideshow_api.getSlideShow(this.props.slideShowID).then(
 			resp=>(resp.data),
 			err=>{throw err;}
 		);

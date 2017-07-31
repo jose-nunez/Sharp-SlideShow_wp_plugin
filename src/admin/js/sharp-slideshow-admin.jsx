@@ -15,6 +15,8 @@ import SlideShowPreview from 'slideShowPreview';
 import 'fontsStyles';
 import 'appStyles';
 
+var slideShowID = 6766767;
+
 const styles = {
 	block: {
 		maxWidth: 250,
@@ -41,14 +43,14 @@ const MyComponent = ()=>{
 
 			<div className="right-side"><div className="right-side-inner">
 				<h2>Preview</h2>
-				<SlideShowPreview />
+				<SlideShowPreview slideShowID={slideShowID} />
 			</div></div>
 			<div className="left-side"><div className="left-side-inner">
 				<RadioButtonGroup name="shipSpeed" defaultSelected="automatic">
 					<RadioButton value="automatic" label="Automatic selection" style={styles.radioButton} />
 					<RadioButton value="manual" label="Manual selection" style={styles.radioButton} />
 				</RadioButtonGroup>
-				<TabsExampleSimple></TabsExampleSimple>
+				<TabsExampleSimple slideShowID={slideShowID} />
 			</div></div>
 		</div>
 		</MuiThemeProvider>

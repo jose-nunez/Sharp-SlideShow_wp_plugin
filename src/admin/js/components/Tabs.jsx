@@ -39,7 +39,7 @@ export default class TabsExampleSimple extends React.Component{
 				<Tab label="Media" >
 				</Tab>
 				<Tab label="Current Slides" >
-					<RemoveSlidesControl />
+					<RemoveSlidesControl slideShowID={this.props.slideShowID} />
 				</Tab>
 			</Tabs>
 		);	
