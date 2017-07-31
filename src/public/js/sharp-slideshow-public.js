@@ -1,7 +1,8 @@
 
 var sharpSlideShow = {};
 
-function slideShowClass(slideIndex){
+function slideShowClass(slideShowID,slideIndex){
+	this.ID = slideShowID;
 	this.slideIndex = slideIndex?slideIndex:1;
 	this.showSlides();
 }
@@ -16,8 +17,8 @@ slideShowClass.prototype = {
 
 	showSlides: function(n) {
 		var i;
-		var slides = document.getElementsByClassName("sss-slide");
-		var dots = document.getElementsByClassName("sss-dot");
+		var slides = document.getElementsByClassName("sss-slide sss-slide-"+this.ID);
+		var dots = document.getElementsByClassName("sss-dot sss-dot-"+this.ID);
 		if (n > slides.length) {this.slideIndex = 1} 
 		if (n < 1) {this.slideIndex = slides.length}
 		for (i = 0; i < slides.length; i++) {
@@ -32,7 +33,7 @@ slideShowClass.prototype = {
 	},
 }
 
-function intialice_sharpSlideShow(slideShowID) {
+function intialice_sharpSlideShow(slideShowID){
 	'use strict';
-	sharpSlideShow[slideShowID] = new slideShowClass();
+	sharpSlideShow[slideShowID] = new slideShowClass(slideShowID);
 }

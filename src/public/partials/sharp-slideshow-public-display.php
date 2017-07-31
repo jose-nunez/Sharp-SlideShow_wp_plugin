@@ -22,7 +22,7 @@
 	<div class="sss-container">
 
 		<?php foreach ($slides as $key => $slide): ?>
-				<div class="sss-slide sss-<?=$slideShowID?> fade">
+				<div class="sss-slide sss-slide-<?=$slideShowID?> fade">
 					<div class="numbertext"><?=($key+1); ?> / <?=count($slides); ?></div>
 					<a href="<?= $slide['link'] ?>" target="<?= $slide['target'] ?>">
 						<img src="<?= $slide['img_url'] ?>" style="width:100%">
