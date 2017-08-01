@@ -39,8 +39,9 @@ class Sharp_Slideshow_Activator {
 				'Mi_sharpito_1'=>'1313',
 				'1313'=>array(
 					'name' =>'Mi_sharpito_1',
+					'auto_slides'=>array(),
 					'slides'=>array(
-						array( //1
+						array(
 							'type' =>'post', // post, page, custom post
 							'id'=>'491',
 							'excerpt'=>true,
@@ -63,8 +64,9 @@ class Sharp_Slideshow_Activator {
 				'Mi_sharpito_2'=>'1212',
 				'1212'=>array(
 					'name' =>'Mi_sharpito_2',
+					'auto_slides'=>array(),
 					'slides'=>array(
-						array( //1
+						array(
 							'type' =>'post', // post, page, custom post
 							'id'=>'412',
 							'excerpt'=>true,

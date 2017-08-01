@@ -78,6 +78,9 @@ class Sharp_Slideshow_Public {
 	*/
 	public function extend_API($data) {
 		register_rest_route($this->options['api_namespace'],
+			'/slideshowsids',array('methods' => 'GET','callback' => array($this,'get_slideshows_ids_api'))
+		);
+		register_rest_route($this->options['api_namespace'],
 			'/slideshow/(?P<slideShowID>[a-zA-Z0-9-]+)',array('methods' => 'GET','callback' => array($this,'shortcode_api')) 
 		);
 
@@ -95,6 +98,41 @@ class Sharp_Slideshow_Public {
 		return $this->display($data['slideShowID']);
 	}
 
+
+	public function get_slideshows_ids_api($data){
+		return $this->get_slideshows_ids();
+	}
+	private function get_slideshows_ids(){
+		$sharp_slideshow_data = get_option('sharp_slideshow_data');
+		$slideshows = $sharp_slideshow_data['slideshows']; 
+		$ids = array();
+		foreach ($slideshows as $index => $slide) {
+			if($this->isSlideID($slideshows,$index)) $ids[] = array('ID'=>$index,'name'=>$slide['name']);
+		}
+		return $ids;
+	}
+
+	private function get_slideshow_id($slideShowName=-1){
+		$sharp_slideshow_data = get_option('sharp_slideshow_data');
+		$slideshows = $sharp_slideshow_data['slideshows']; 
+
+		if($this->isSlideName($slideshows,$slideShowName)){ //is the name!
+			return intval($slideshows[$slideShowName]);
+		}
+		else if($this->isSlideID($slideshows,$slideShowName)){ //is the ID!
+			return $slideShowName;
+		}
+		else return 0;
+	}
+	
+	private function isSlideName($slideshows,$name){
+		if(is_string($slideshows[''.$name])) return true;
+		return false;
+	}
+	private function isSlideID($slideshows,$id){
+		if(is_array($slideshows[''.$id])) return true;
+		return false;
+	}
 	/**
 	 * Loads the content on shortcode invocation
 	 * [sharp-slideshow]
@@ -116,19 +154,6 @@ class Sharp_Slideshow_Public {
 		
 		return $this->display($slideShowID);
 	}
-
-	private function get_slideshow_id($slideShowName=-1){
-		$sharp_slideshow_data = get_option('sharp_slideshow_data');
-
-		if(is_string($sharp_slideshow_data['slideshows'][$slideShowName])){ //is the name!
-			return intval($sharp_slideshow_data['slideshows'][$slideShowName]);
-		}
-		else if(is_array($sharp_slideshow_data['slideshows'][$slideShowName])){ //is the ID!
-			return $slideShowName;
-		}
-		else return 0;
-	}
-
 	/**
 	 * Returns the front code to be shown
 	 *

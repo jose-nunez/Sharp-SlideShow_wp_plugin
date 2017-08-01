@@ -4,13 +4,12 @@ import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';injectTapEventPlugin();
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 
 
 import TabsExampleSimple from 'tabsExampleSimple';
 import SlideShowPreview from 'slideShowPreview';
+import SelectSlideShow from 'selectSlideShow';
 
 import 'fontsStyles';
 import 'appStyles';
@@ -34,11 +33,7 @@ const MyComponent = ()=>{
 			<h1>Sharp Slideshow</h1>
 			<div>
 				<RaisedButton label="Add New" /> 
-				<SelectField className="select-ui" hintText="Slideshow" value={2} >
-					<MenuItem value={1} primaryText="My SS 1" />
-					<MenuItem value={2} primaryText="My SS 2" />
-					<MenuItem value={3} primaryText="My SS 3" />
-				</SelectField> 
+				<SelectSlideShow />
 				<RaisedButton label="Delete" />
 			</div>
 
@@ -47,10 +42,14 @@ const MyComponent = ()=>{
 				<SlideShowPreview slideShowID={slideShowID} />
 			</div></div>
 			<div className="left-side"><div className="left-side-inner">
+				<h1>Settings</h1>
+				<h2>Slides</h2>
+				{/*
 				<RadioButtonGroup name="shipSpeed" defaultSelected="automatic">
 					<RadioButton value="automatic" label="Automatic selection" style={styles.radioButton} />
 					<RadioButton value="manual" label="Manual selection" style={styles.radioButton} />
 				</RadioButtonGroup>
+				*/}
 				<TabsExampleSimple slideShowID={slideShowID} />
 			</div></div>
 		</div>

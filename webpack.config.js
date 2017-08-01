@@ -23,8 +23,9 @@ module.exports = {
 			fontsStyles: 	p_resolve('scss/fontStyles.css'),
 			appStyles: 		p_resolve('scss/sharp-slideshow-admin.scss'),
 			/* COMPONENTS ____________________________________________________________________________________ */
-			tabsExampleSimple:	p_resolve('js/components/Tabs.jsx'),
 			slideShowPreview:	p_resolve('js/components/SlideShowPreview.jsx'),
+			selectSlideShow:	p_resolve('js/components/SelectSlideShow.jsx'),
+			tabsExampleSimple:	p_resolve('js/components/Tabs.jsx'),
 			postsList:			p_resolve('js/components/PostsList.jsx'),
 				arrayPostsList:			p_resolve('js/components/postlist/ArrayPostsList.jsx'),
 				arrayPostsListElement:	p_resolve('js/components/postlist/ArrayPostsListElement.jsx'),

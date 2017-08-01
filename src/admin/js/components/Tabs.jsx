@@ -31,14 +31,14 @@ export default class TabsExampleSimple extends React.Component{
 	render(){
 		return (
 			<Tabs>
-				<Tab label="Posts" >
+				<Tab label="Add Posts" >
 					<PostsList />
 				</Tab>
-				<Tab label="Pages" >
+				<Tab label="Add Pages" >
 				</Tab>
-				<Tab label="Media" >
+				<Tab label="Add Media" >
 				</Tab>
-				<Tab label="Current Slides" >
+				<Tab label="Current" >
 					<RemoveSlidesControl slideShowID={this.props.slideShowID} />
 				</Tab>
 			</Tabs>
