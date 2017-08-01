@@ -14,9 +14,11 @@ export default class RemoveSlidesControl extends React.Component{
 		this.state = {slides:[]};
 	}
 	
-	// componentDidMount = ()=>{
+	componentDidMount = ()=>{
+		this.retreiveSlides(this.props.slideShowID);
+	}
 	componentWillReceiveProps = ({slideShowID})=>{
-		this.retreiveSlides(slideShowID);
+		if(slideShowID!=this.props.slideShowID) this.retreiveSlides(slideShowID);
 	}
 	
 	retreiveSlides = (slideShowID)=>{
@@ -29,7 +31,6 @@ export default class RemoveSlidesControl extends React.Component{
 	}
 
 	render(){
-		console.log('Este es: ',this.props.slideShowID);
 		return (
 			<List className="post-list">
 				{this.state.slides.map((slide,index)=>{

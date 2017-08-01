@@ -14,23 +14,18 @@ export default class SelectSlideShow extends React.Component{
 	}
 	
 	componentDidMount = ()=>{
-		this.retreiveData();
+		this.retreiveData().then(()=>{
+			this.props.onChangeSelected(this.state.selected);
+		});
 	}
 	
 	retreiveData = ()=>{
-		this.retreiveSlideShowsIDs().then(
-			slideshows=>{
-				this.setState({slideshows:slideshows,selected:slideshows[0].ID});
+		return this.sharpslideshow_api.getSlideShowsIDs().then(
+			({data})=>{
+				this.setState({slideshows:data,selected:data[0].ID});
 			},
 			err=>{throw err}
 		)
-	}
-
-	retreiveSlideShowsIDs = ()=>{
-		return this.sharpslideshow_api.getSlideShowsIDs(this.props.slideShowID).then(
-			resp=>(resp.data),
-			err=>{throw err;}
-		);
 	}
 
 	handleChange = (event, index, slideShowID) => {
