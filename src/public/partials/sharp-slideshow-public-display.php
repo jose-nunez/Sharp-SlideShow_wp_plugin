@@ -35,8 +35,8 @@
 		<a class="next no-select" onclick="sharpSlideShow[<?=$slideShowID?>].plusSlides(1)">&#10095;</a>
 	</div>
 	<div style="text-align:center">
-		<span class="sss-dot sss-dot-<?=$slideShowID?>" onclick="sharpSlideShow[<?=$slideShowID?>].currentSlide(1)"></span> 
-		<span class="sss-dot sss-dot-<?=$slideShowID?>" onclick="sharpSlideShow[<?=$slideShowID?>].currentSlide(2)"></span> 
-		<span class="sss-dot sss-dot-<?=$slideShowID?>" onclick="sharpSlideShow[<?=$slideShowID?>].currentSlide(3)"></span> 
+		<?php for($i=1; $i <= count($slides) ; $i++): ?>
+		<span class="sss-dot sss-dot-<?=$slideShowID?>" onclick="sharpSlideShow[<?=$slideShowID?>].currentSlide(<?=$i?>)"></span> 
+		<?php endfor; ?>
 	</div>
 </div>
