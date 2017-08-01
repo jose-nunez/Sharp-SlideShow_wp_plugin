@@ -39,6 +39,7 @@ class Sharp_Slideshow_Activator {
 				'Mi_sharpito_1'=>'1313',
 				'1313'=>array(
 					'name' =>'Mi_sharpito_1',
+					'settings'=>array(),
 					'auto_slides'=>array(),
 					'slides'=>array(
 						array(
@@ -64,6 +65,7 @@ class Sharp_Slideshow_Activator {
 				'Mi_sharpito_2'=>'1212',
 				'1212'=>array(
 					'name' =>'Mi_sharpito_2',
+					'settings'=>array(),
 					'auto_slides'=>array(),
 					'slides'=>array(
 						array(

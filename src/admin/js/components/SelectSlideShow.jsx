@@ -33,8 +33,9 @@ export default class SelectSlideShow extends React.Component{
 		);
 	}
 
-	handleChange = (event, index, value) => {
-		this.setState({selected:value});
+	handleChange = (event, index, slideShowID) => {
+		this.setState({selected:slideShowID});
+		this.props.onChangeSelected(slideShowID);
 	};
 
 	render = ()=>{

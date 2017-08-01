@@ -28,6 +28,14 @@ export default class TabsExampleSimple extends React.Component{
 		this.state = {};
 	}
 
+
+	displayRemoveSlides = ()=>{
+		if(this.props.slideShowID)
+			return <RemoveSlidesControl slideShowID={this.props.slideShowID} />;
+		else return 'Holi';
+	}
+
+
 	render(){
 		return (
 			<Tabs>
@@ -39,7 +47,7 @@ export default class TabsExampleSimple extends React.Component{
 				<Tab label="Add Media" >
 				</Tab>
 				<Tab label="Current" >
-					<RemoveSlidesControl slideShowID={this.props.slideShowID} />
+					{this.displayRemoveSlides()}
 				</Tab>
 			</Tabs>
 		);	

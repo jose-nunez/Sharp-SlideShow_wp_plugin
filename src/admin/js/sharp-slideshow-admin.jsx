@@ -14,9 +14,6 @@ import SelectSlideShow from 'selectSlideShow';
 import 'fontsStyles';
 import 'appStyles';
 
-// var slideShowID = 1313;
-var slideShowID = 1212;
-
 const styles = {
 	block: {
 		maxWidth: 250,
@@ -26,36 +23,47 @@ const styles = {
 	},
 };
 
-const MyComponent = ()=>{
-	return (
-		<MuiThemeProvider>
-		<div id="sss-main-container" className="clearfix">
-			<h1>Sharp Slideshow</h1>
-			<div>
-				<RaisedButton label="Add New" /> 
-				<SelectSlideShow />
-				<RaisedButton label="Delete" />
-			</div>
+class MyComponent extends React.Component{
+	
+	constructor(props) {
+		super(props);
+		this.state = {slideShowID:null};
+	}
 
-			<div className="right-side"><div className="right-side-inner">
-				<h2>Preview</h2>
-				<SlideShowPreview slideShowID={slideShowID} />
-			</div></div>
-			<div className="left-side"><div className="left-side-inner">
-				<h1>Settings</h1>
-				<h2>Slides</h2>
-				{/*
-				<RadioButtonGroup name="shipSpeed" defaultSelected="automatic">
-					<RadioButton value="automatic" label="Automatic selection" style={styles.radioButton} />
-					<RadioButton value="manual" label="Manual selection" style={styles.radioButton} />
-				</RadioButtonGroup>
-				*/}
-				<TabsExampleSimple slideShowID={slideShowID} />
-			</div></div>
-		</div>
-		</MuiThemeProvider>
-	)
-};
+	loadSlideShow = (slideShowID)=>{console.log('mostrando ',slideShowID);this.setState({slideShowID:slideShowID})}
+
+	render = ()=>{
+		return (
+			<MuiThemeProvider>
+			<div id="sss-main-container" className="clearfix">
+				<h1>Sharp Slideshow</h1>
+				<div>
+					<RaisedButton label="Add New" /> 
+					<SelectSlideShow onChangeSelected={this.loadSlideShow} />
+					<RaisedButton label="Delete" />
+				</div>
+
+				<div className="right-side"><div className="right-side-inner">
+					<h2>Preview</h2>
+					{()=>{if(this.state.slideShowID)return <SlideShowPreview slideShowID={this.state.slideShowID} />}}
+				</div></div>
+				<div className="left-side"><div className="left-side-inner">
+					<h1>Settings</h1>
+					<h2>Slides</h2>
+					{/*
+					<RadioButtonGroup name="shipSpeed" defaultSelected="automatic">
+						<RadioButton value="automatic" label="Automatic selection" style={styles.radioButton} />
+						<RadioButton value="manual" label="Manual selection" style={styles.radioButton} />
+					</RadioButtonGroup>
+					*/}
+					<TabsExampleSimple slideShowID={this.state.slideShowID} />
+				</div></div>
+			</div>
+			</MuiThemeProvider>
+		)
+	};
+
+}
 
 ReactDOM.render(
 	<MyComponent></MyComponent>,
