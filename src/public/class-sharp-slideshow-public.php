@@ -134,11 +134,13 @@ class Sharp_Slideshow_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	private function display($slideShowID){
+	private function display($slideShowID){	
 		ob_start();
 			$slides = $this->get_slides($slideShowID);
-			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/sharp-slideshow-public-display.php';
+			include plugin_dir_path( dirname( __FILE__ ) ) . 'public/partials/sharp-slideshow-public-display.php';
 		return ob_get_clean();
+
+		// return 'holi '.$slideShowID;
 	}
 
 	/**

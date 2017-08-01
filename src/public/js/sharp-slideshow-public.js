@@ -29,7 +29,7 @@ slideShowClass.prototype = {
 			dots[i].className = dots[i].className.replace(" active", "");
 		}
 		slides[this.slideIndex-1].style.display = "block"; 
-		dots[this.slideIndex-1].className += " active";
+		if(dots[this.slideIndex-1]) dots[this.slideIndex-1].className += " active";
 	},
 }
 
