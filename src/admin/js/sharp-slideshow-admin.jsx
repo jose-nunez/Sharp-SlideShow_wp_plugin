@@ -45,7 +45,7 @@ class MyComponent extends React.Component{
 
 				<div className="right-side"><div className="right-side-inner">
 					<h2>Preview</h2>
-					{()=>{if(this.state.slideShowID)return <SlideShowPreview slideShowID={this.state.slideShowID} />}}
+					{ (this.state.slideShowID)? <SlideShowPreview slideShowID={this.state.slideShowID} /> : null }
 				</div></div>
 				<div className="left-side"><div className="left-side-inner">
 					<h1>Settings</h1>

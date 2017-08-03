@@ -1,5 +1,5 @@
 import React from 'react';
-import DOMPurify from 'dompurify';
+// import DOMPurify from 'dompurify';
 
 import RaisedButton from 'material-ui/RaisedButton';
 
@@ -14,40 +14,41 @@ export default class SlideShowPreview extends React.Component{
 	}
 	
 	componentDidMount = ()=>{
-		this.retreiveData();
+		this.retreiveSlideShow(this.props.slideShowID);
+	}
+	componentWillReceiveProps = ({slideShowID})=>{
+		if(slideShowID!=this.props.slideShowID) this.retreiveSlideShow(slideShowID);
 	}
 	
-	retreiveData = ()=>{
-		this.retreiveSlideShow().then(
-			markup=>{
-				this.setState({markup:markup});
-				intialice_sharpSlideShow(this.props.slideShowID); //CALLS THE EXTERNAL FUNCTION TO INITIALICE THE SLIDES
+	retreiveSlideShow = (slideShowID)=>{
+		this.setState({isLoading:true});
+		return this.sharpslideshow_api.getSlideShow(slideShowID).then(
+			({data})=>{
+				this.setState({markup:data,isLoading:false});
+				intialice_sharpSlideShow(slideShowID); //CALLS THE EXTERNAL FUNCTION TO INITIALICE THE SLIDES
 			},
 			err=>{throw err}
-		)
-	}
-
-
-	retreiveSlideShow = ()=>{
-		return this.sharpslideshow_api.getSlideShow(this.props.slideShowID).then(
-			resp=>(resp.data),
-			err=>{throw err;}
 		);
 	}
 
 	refresh = ()=>{
-		this.setState({markup:''});
-		this.retreiveData();
+		this.retreiveSlideShow(this.props.slideShowID);
 	}
 	
-
-	render = ()=>{
-		return (
-			<div>
-				<RaisedButton label="Refresh" onTouchTap={this.refresh} />
-				<p dangerouslySetInnerHTML={{__html: this.state.markup }}></p>
-			</div>
-			// <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.markup)}}></p>
-		);
+	renderList(){
+		if(this.state.isLoading){
+			return <span className="spinner block is-active"></span>;
+		}
+		else{
+			return (
+				<div>
+					<RaisedButton label="Refresh" onTouchTap={this.refresh} />
+					<p dangerouslySetInnerHTML={{__html: this.state.markup }}></p>
+				</div>
+				// <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.markup)}}></p>
+			);
+		}
 	}
+
+	render = ()=>this.renderList();
 }

@@ -11,7 +11,7 @@ export default class RemoveSlidesControl extends React.Component{
 		super(props);
 		
 		this.sharpslideshow_api = new SharpSlideShow_API();
-		this.state = {slides:[]};
+		this.state = {slides:[],isLoading:false};
 	}
 	
 	componentDidMount = ()=>{
@@ -22,23 +22,37 @@ export default class RemoveSlidesControl extends React.Component{
 	}
 	
 	retreiveSlides = (slideShowID)=>{
+		this.setState({isLoading:true});
 		return this.sharpslideshow_api.getSlides(slideShowID).then(
 			({data})=>{
-				this.setState({slides:data});
+				this.setState({slides:data,isLoading:false});
 			}
 			,err=>{throw err;}
 		);
 	}
 
+	renderList(){
+		if(this.state.isLoading){
+			return <span className="spinner block is-active"></span>;
+		}
+		else{
+			return (
+				<List className="post-list">
+					{this.state.slides.map((slide,index)=>{
+						return (
+							<RemoveSlideElement key={index} title={slide.title} img_url={slide.img_url} />
+						);
+					})}
+				</List>
+			);
+		}
+	}
+
 	render(){
 		return (
-			<List className="post-list">
-				{this.state.slides.map((slide,index)=>{
-					return (
-						<RemoveSlideElement key={index} title={slide.title} img_url={slide.img_url} />
-					);
-				})}
-			</List>
+			<div className="posts-list">
+				{this.renderList()}
+			</div>
 		);
 	}
 

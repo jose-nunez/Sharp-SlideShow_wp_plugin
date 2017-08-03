@@ -97,9 +97,7 @@ export default class PostsList extends React.Component{
 	}
 
 	renderList(){
-
 		if(this.state.isLoading){
-			// return <h2>Cargando mierda!</h2>;
 			return <span className="spinner block is-active"></span>;
 		}
 		else{
