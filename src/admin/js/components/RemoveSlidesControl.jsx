@@ -4,7 +4,7 @@ import {List} from 'material-ui/List';
 
 import SharpSlideShow_API from 'sharpSlideShowAPI';
 import RemoveSlideElement from 'removeSlideElement';
-
+import SlideShowController from 'slideShowController';
 
 export default class RemoveSlidesControl extends React.Component{
 	constructor(props) {
@@ -14,11 +14,18 @@ export default class RemoveSlidesControl extends React.Component{
 		this.state = {slides:[],isLoading:false};
 	}
 	
+	componentWillUnmount = ()=>{
+		SlideShowController.removeRefreshCallback(this.refresh);
+	}
 	componentDidMount = ()=>{
-		this.retreiveSlides(this.props.slideShowID);
+		SlideShowController.addRefreshCallback(this.refresh); // In case the slideshow was updated
+		this.refresh();
 	}
 	componentWillReceiveProps = ({slideShowID})=>{
-		if(slideShowID!=this.props.slideShowID) this.retreiveSlides(slideShowID);
+		if(slideShowID!=this.props.slideShowID) this.refresh(slideShowID);
+	}
+	refresh = (slideShowID)=>{
+		if(slideShowID || this.props.slideShowID) this.retreiveSlides(slideShowID || this.props.slideShowID);
 	}
 	
 	retreiveSlides = (slideShowID)=>{

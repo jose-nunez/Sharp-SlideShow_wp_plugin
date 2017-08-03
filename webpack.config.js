@@ -22,6 +22,7 @@ module.exports = {
 			/* STYLES ____________________________________________________________________________________________ */
 			fontsStyles: 	p_resolve('scss/fontStyles.css'),
 			appStyles: 		p_resolve('scss/sharp-slideshow-admin.scss'),
+			
 			/* COMPONENTS ____________________________________________________________________________________ */
 			slideShowPreview:	p_resolve('js/components/SlideShowPreview.jsx'),
 			selectSlideShow:	p_resolve('js/components/SelectSlideShow.jsx'),
@@ -32,6 +33,10 @@ module.exports = {
 				postsListStyles:		p_resolve('js/components/postlist/styles.scss'),
 			removeSlidesControl:	p_resolve('js/components/RemoveSlidesControl.jsx'),
 				removeSlideElement:	p_resolve('js/components/removeSlides/RemoveSlideElement.jsx'),
+			
+			/* CONTROLLERS ____________________________________________________________________________________ */
+			slideShowController:	p_resolve('js/controllers/SlideShowController.js'),
+			
 			/* UTIL ____________________________________________________________________________________ */
 			wordpressAPI:		p_resolve('js/util/WordpressAPI.js'),
 			sharpSlideShowAPI:	p_resolve('js/util/SharpSlideShowAPI.js'),

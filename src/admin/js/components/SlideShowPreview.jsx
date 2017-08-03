@@ -4,20 +4,30 @@ import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 
 import SharpSlideShow_API from 'sharpSlideShowAPI';
+import SlideShowController from 'slideShowController';
 
 export default class SlideShowPreview extends React.Component{
 	constructor(props) {
 		super(props);
-		
 		this.sharpslideshow_api = new SharpSlideShow_API();
 		this.state = {markup:''};
 	}
 	
+	componentWillUnmount = ()=>{
+		SlideShowController.removeRefreshCallback(this.refresh);
+	}
 	componentDidMount = ()=>{
-		this.retreiveSlideShow(this.props.slideShowID);
+		SlideShowController.addRefreshCallback(this.refresh); // In case the slideshow was updated
+		this.refresh();
 	}
 	componentWillReceiveProps = ({slideShowID})=>{
-		if(slideShowID!=this.props.slideShowID) this.retreiveSlideShow(slideShowID);
+		if(slideShowID!=this.props.slideShowID) this.refresh(slideShowID);
+	}
+	refresh = (slideShowID)=>{
+		if(slideShowID || this.props.slideShowID) this.retreiveSlideShow(slideShowID || this.props.slideShowID);
+	}
+	refreshButton = ()=>{
+		this.refresh();
 	}
 	
 	retreiveSlideShow = (slideShowID)=>{
@@ -25,15 +35,12 @@ export default class SlideShowPreview extends React.Component{
 		return this.sharpslideshow_api.getSlideShow(slideShowID).then(
 			({data})=>{
 				this.setState({markup:data,isLoading:false});
-				intialice_sharpSlideShow(slideShowID); //CALLS THE EXTERNAL FUNCTION TO INITIALICE THE SLIDES
+				intialice_sharpSlideShow(slideShowID); //CALLS THE GLOBAL FUNCTION TO INITIALICE THE SLIDES
 			},
 			err=>{throw err}
 		);
 	}
 
-	refresh = ()=>{
-		this.retreiveSlideShow(this.props.slideShowID);
-	}
 	
 	renderList(){
 		if(this.state.isLoading){
@@ -42,7 +49,7 @@ export default class SlideShowPreview extends React.Component{
 		else{
 			return (
 				<div>
-					<RaisedButton label="Refresh" onTouchTap={this.refresh} />
+					<RaisedButton label="Refresh" onTouchTap={this.refreshButton} />
 					<p dangerouslySetInnerHTML={{__html: this.state.markup }}></p>
 				</div>
 				// <p dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(this.state.markup)}}></p>
