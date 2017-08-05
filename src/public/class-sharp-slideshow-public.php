@@ -177,27 +177,41 @@ class Sharp_Slideshow_Public {
 		$sharp_slideshow_data = get_option('sharp_slideshow_data');
 		$pre_slides = $sharp_slideshow_data['slideshows'][''.$slideShowID]['slides'];
 		
-		$posts_ids = '';
-		foreach ($pre_slides as $key => $slide){$posts_ids .= $slide['id'].',';}
-		rtrim($posts_ids,',');
-
-		$args = array('include'=>$posts_ids);
-		$posts_array = get_posts( $args );
+		$sources = array();
+		$posts_ids = '';foreach ($pre_slides as $key => $pre_slide){$posts_ids .= $pre_slide['id'].',';}rtrim($posts_ids,',');
+		$sources['post'] = $this->get_posts_idexed(array('include'=>$posts_ids));
 
 		$slides = array();
-		foreach ($posts_array as $key => $post) {
-			$slides[] = array(
-				'title'=>$post->post_title,
-				'caption'=> $post->post_excerpt ? $post->post_excerpt : wp_kses_post(wp_trim_words( $post->post_content,intval(get_option('sharp_slideshow_excerpt_length')))),
-				'img_url'=>get_the_post_thumbnail_url($post->ID,'large'),
-				'link'=>get_permalink($post->ID),
-			);
+		foreach ($pre_slides as $key => $pre_slide) {
+			$slides[] = $this->process_slide($pre_slide,$sources[$pre_slide['type']][''.$pre_slide['id']]);
 		}
 		return $slides;
 	}
 	function store_excerpt_length($length) {
 		update_option( 'sharp_slideshow_excerpt_length', $length );
 		return $length;
+	}
+
+	private function get_posts_idexed($args){
+		$posts_array = get_posts( $args );
+		$result = array();
+		foreach ($posts_array as $key => $post) $result[''.$post->ID] = $post;
+		return $result;
+	}
+
+	private function process_slide($pre_slide,$source){
+		if($pre_slide['type']=='post'){
+			return array(
+				'title'=>$source->post_title,
+				'caption'=> ($pre_slide['settings']['excerpt'] && $source->post_excerpt) ? $source->post_excerpt : wp_kses_post(wp_trim_words( $source->post_content,intval(get_option('sharp_slideshow_excerpt_length')))),
+				'img_url'=>get_the_post_thumbnail_url($source->ID,'large'),
+				'link'=>get_permalink($source->ID),
+				
+				'type'=>$pre_slide['type'],
+				'id'=>$pre_slide['id'],
+				'settings'=>$pre_slide['settings'],
+			);
+		}
 	}
 
 }

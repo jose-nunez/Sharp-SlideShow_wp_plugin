@@ -45,20 +45,29 @@ class Sharp_Slideshow_Activator {
 						array(
 							'type' =>'post', // post, page, custom post
 							'id'=>'491',
-							'excerpt'=>true,
-							'new_page'=>false,
+							'settings'=>array(
+								'display'=>'tile',//fit|fill|stretch|tile|center
+								'excerpt'=>true,
+								'new_page'=>true,
+							),
 						),
-						array( //2
+						array( 
 							'type' =>'post',
 							'id'=>'380',
-							'excerpt'=>true,
-							'new_page'=>false,
+							'settings'=>array(
+								'display'=>'fit',
+								'excerpt'=>true,
+								'new_page'=>true,
+							),
 						),
-						array( //3
+						array( 
 							'type' =>'post',
 							'id'=>'348',
-							'excerpt'=>true,
-							'new_page'=>false,
+							'settings'=>array(
+								'display'=>'center',
+								'excerpt'=>true,
+								'new_page'=>true,
+							),
 						),
 					),
 				),
@@ -71,26 +80,38 @@ class Sharp_Slideshow_Activator {
 						array(
 							'type' =>'post', // post, page, custom post
 							'id'=>'412',
-							'excerpt'=>true,
-							'new_page'=>false,
+							'settings'=>array(
+								'display'=>'center',
+								'excerpt'=>true,
+								'new_page'=>true,
+							),
 						),
-						array( //2
+						array( 
 							'type' =>'post',
 							'id'=>'452',
-							'excerpt'=>true,
-							'new_page'=>false,
+							'settings'=>array(
+								'display'=>'fit',
+								'excerpt'=>true,
+								'new_page'=>true,
+							),
 						),
-						array( //3
+						array( 
 							'type' =>'post',
 							'id'=>'342',
-							'excerpt'=>true,
-							'new_page'=>false,
+							'settings'=>array(
+								'display'=>'fill',
+								'excerpt'=>true,
+								'new_page'=>true,
+							),
 						),
-						array( //4
+						array(
 							'type' =>'post',
 							'id'=>'478',
-							'excerpt'=>true,
-							'new_page'=>false,
+							'settings'=>array(
+								'display'=>'center',
+								'excerpt'=>true,
+								'new_page'=>true,
+							),
 						),
 					),
 				),

@@ -18,17 +18,43 @@
 	$slides
 */ ?>
 
+<?php function specialStyle($slide){
+	$style = "";	
+	$style .= $slide['img_url']? "background-image:url(".$slide['img_url'].");" : "";
+	
+	if($slide['settings']['display']){
+		$size="";
+		switch ($slide['settings']['display']) {
+			case 'fit':		$size="background-size:contain;";		break;
+			case 'fill':	$size="background-size:cover;";			break;
+			case 'stretch':	$size="background-size:100% 100%;";		break;
+			case 'tile':	$size="background-repeat:repeat;";		break;
+			default:		$size="";	break;
+		}
+		$style .=  $size;
+	}
+
+	return $style;
+} 
+
+	function generalStyle($settings=null){
+		return "padding-top:50%";
+	}
+?>
+
+
 <div class="sharp-slideshow sss-<?=$slideShowID?>">
 	<div class="sss-container">
-
+		<div class="numbertext"><?=($key+1); ?> / <?=count($slides); ?></div>
 		<?php foreach ($slides as $key => $slide): ?>
-				<div class="sss-slide sss-slide-<?=$slideShowID?> fade">
-					<div class="numbertext"><?=($key+1); ?> / <?=count($slides); ?></div>
-					<a href="<?= $slide['link'] ?>" target="<?= $slide['target'] ?>">
-						<img src="<?= $slide['img_url'] ?>" style="width:100%">
-						<div class="text"><?= $slide['title'].' '.$slide['caption'] ?></div>
-					</a>
+				<a href="<?= $slide['link'] ?>" target="<?= $slide['settings']['new_page']? '_blank':'' ?>">
+				<div 
+					style="<?=specialStyle($slide)?>;<?=generalStyle()?>" 
+					class="sss-slide sss-slide-<?=$slideShowID?> fade" 
+				>
+					<div class="text"><?= $slide['title'].' '.$slide['caption'] ?></div>
 				</div>
+				</a>
 		<?php endforeach; ?>
 
 		<a class="prev no-select" onclick="sharpSlideShow[<?=$slideShowID?>].plusSlides(-1)">&#10094;</a>
