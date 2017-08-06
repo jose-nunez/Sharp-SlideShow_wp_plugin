@@ -51,6 +51,7 @@ class Sharp_Slideshow_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+		$this->options = $options;
 
 	}
 
@@ -93,6 +94,10 @@ class Sharp_Slideshow_Admin {
 		}
 
 		wp_enqueue_script( $this->plugin_name.'admin');
+		$js = "var sharp_slideshow_api_url ='".$this->options['api_url']."';";
+		$js .= "var sss_wp_api_url ='".$this->options['wp_api_url']."';";
+		wp_add_inline_script($this->plugin_name.'admin',$js,'before');
+
 		wp_enqueue_script( $this->plugin_name.'public');
 		wp_enqueue_style( $this->plugin_name.'public');
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . '/admin/partials/sharp-slideshow-admin-display.php';

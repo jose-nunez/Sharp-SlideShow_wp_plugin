@@ -24,10 +24,13 @@ const styles = {
 };
 
 class MyComponent extends React.Component{
-	
 	constructor(props) {
 		super(props);
-		this.state = {slideShowID:null};
+		this.state = {
+			slideShowID:null,
+			api_url:sharp_slideshow_api_url,	//External variable!
+			wp_api_url:sss_wp_api_url, 			//External variable!
+		};
 	}
 
 	loadSlideShow = (slideShowID)=>{console.log('mostrando ',slideShowID);this.setState({slideShowID:slideShowID})}
@@ -39,13 +42,13 @@ class MyComponent extends React.Component{
 				<h1>Sharp Slideshow</h1>
 				<div>
 					<RaisedButton label="Add New" /> 
-					<SelectSlideShow onChangeSelected={this.loadSlideShow} />
+					<SelectSlideShow onChangeSelected={this.loadSlideShow} api_url={this.state.api_url} />
 					<RaisedButton label="Delete" />
 				</div>
 
 				<div className="right-side"><div className="right-side-inner">
 					<h2>Preview</h2>
-					<SlideShowPreview slideShowID={this.state.slideShowID} />
+					<SlideShowPreview slideShowID={this.state.slideShowID} api_url={this.state.api_url}/>
 				</div></div>
 				<div className="left-side"><div className="left-side-inner">
 					<h1>Settings</h1>
@@ -56,7 +59,7 @@ class MyComponent extends React.Component{
 						<RadioButton value="manual" label="Manual selection" style={styles.radioButton} />
 					</RadioButtonGroup>
 					*/}
-					<TabsExampleSimple slideShowID={this.state.slideShowID} />
+					<TabsExampleSimple slideShowID={this.state.slideShowID} api_url={this.state.api_url} wp_api_url={this.state.wp_api_url} />
 				</div></div>
 			</div>
 			</MuiThemeProvider>

@@ -9,7 +9,7 @@ import SlideShowController from 'slideShowController';
 export default class SlideShowPreview extends React.Component{
 	constructor(props) {
 		super(props);
-		this.sharpslideshow_api = new SharpSlideShow_API();
+		this.sharpslideshow_api = new SharpSlideShow_API(this.props.api_url);
 		this.state = {markup:''};
 	}
 	

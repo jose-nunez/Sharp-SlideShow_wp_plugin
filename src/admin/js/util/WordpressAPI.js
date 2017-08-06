@@ -9,10 +9,10 @@ import axios from 'axios';
 
 class WP_API{
 
-	constructor(WP_URL='http://joannecrowther.local/'){
+	constructor(API_URL){
 		// if(!instance){ instance = this; }
 
-		this.API_URL = WP_URL+'wp-json/wp/v2/';
+		this.API_URL = API_URL;
 	}
 
 	request(requestUrl){

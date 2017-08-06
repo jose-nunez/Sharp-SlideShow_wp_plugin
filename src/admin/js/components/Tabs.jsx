@@ -31,7 +31,7 @@ export default class TabsExampleSimple extends React.Component{
 
 	displayRemoveSlides = ()=>{
 		if(this.props.slideShowID)
-			return <RemoveSlidesControl slideShowID={this.props.slideShowID} />;
+			return <RemoveSlidesControl slideShowID={this.props.slideShowID} api_url={this.props.api_url} />;
 		else return 'Holi';
 	}
 
@@ -40,7 +40,7 @@ export default class TabsExampleSimple extends React.Component{
 		return (
 			<Tabs>
 				<Tab label="Add Posts" >
-					<PostsList />
+					<PostsList wp_api_url={this.props.wp_api_url} />
 				</Tab>
 				<Tab label="Add Pages" >
 				</Tab>

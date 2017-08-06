@@ -2,8 +2,8 @@ import axios from 'axios';
 
 class SharpSlideShow_API{
 
-	constructor(WP_URL='http://joannecrowther.local/'){
-		this.API_URL = WP_URL+'wp-json/sharp-slideshow/v1/';
+	constructor(API_URL){
+		this.API_URL = API_URL;
 	}
 
 	request(requestUrl){

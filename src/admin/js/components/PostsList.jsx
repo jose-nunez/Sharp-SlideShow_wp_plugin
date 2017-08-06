@@ -13,7 +13,7 @@ export default class PostsList extends React.Component{
 	constructor(props) {
 		super(props);
 		
-		this.wp_api = new WP_API();
+		this.wp_api = new WP_API(this.props.wp_api_url);
 		this.state = {
 			posts:[],
 			page: 1,
