@@ -178,12 +178,12 @@ class Sharp_Slideshow_Public {
 		$pre_slides = $sharp_slideshow_data['slideshows'][''.$slideShowID]['slides'];
 		
 		$sources = array();
-		$posts_ids = '';foreach ($pre_slides as $key => $pre_slide){$posts_ids .= $pre_slide['id'].',';}rtrim($posts_ids,',');
+		$posts_ids = '';foreach ($pre_slides as $key => $pre_slide){$posts_ids .= $pre_slide['source_id'].',';}rtrim($posts_ids,',');
 		$sources['post'] = $this->get_posts_idexed(array('include'=>$posts_ids));
 
 		$slides = array();
 		foreach ($pre_slides as $key => $pre_slide) {
-			$slides[] = $this->process_slide($pre_slide,$sources[$pre_slide['type']][''.$pre_slide['id']]);
+			$slides[] = $this->process_slide($pre_slide,$sources[$pre_slide['source_type']][''.$pre_slide['source_id']]);
 		}
 		return $slides;
 		// return array();
@@ -201,17 +201,13 @@ class Sharp_Slideshow_Public {
 	}
 
 	private function process_slide($pre_slide,$source){
-		if($pre_slide['type']=='post'){
-			return array(
+		if($pre_slide['source_type']=='post'){
+			return array_merge($pre_slide,array(
 				'title'=>$source->post_title,
 				'caption'=> ($pre_slide['settings']['excerpt'] && $source->post_excerpt) ? $source->post_excerpt : wp_kses_post(wp_trim_words( $source->post_content,intval(get_option('sharp_slideshow_excerpt_length')))),
 				'img_url'=>get_the_post_thumbnail_url($source->ID,'large'),
 				'link'=>get_permalink($source->ID),
-				
-				'type'=>$pre_slide['type'],
-				'id'=>$pre_slide['id'],
-				'settings'=>$pre_slide['settings'],
-			);
+			));
 		}
 	}
 

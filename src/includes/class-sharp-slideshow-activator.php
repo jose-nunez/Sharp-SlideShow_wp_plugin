@@ -43,8 +43,9 @@ class Sharp_Slideshow_Activator {
 					'auto_slides'=>array(),
 					'slides'=>array(
 						array(
-							'type' =>'post', // post, page, custom post
-							'id'=>'491',
+							'id' => '5987544f94581',
+							'source_type' =>'post', // post, page, custom post
+							'source_id'=>'491',
 							'settings'=>array(
 								'display'=>'tile',//fit|fill|stretch|tile|center
 								'excerpt'=>true,
@@ -52,8 +53,9 @@ class Sharp_Slideshow_Activator {
 							),
 						),
 						array( 
-							'type' =>'post',
-							'id'=>'380',
+							'id' => '5987544f94590',
+							'source_type' =>'post',
+							'source_id'=>'380',
 							'settings'=>array(
 								'display'=>'fit',
 								'excerpt'=>true,
@@ -61,8 +63,9 @@ class Sharp_Slideshow_Activator {
 							),
 						),
 						array( 
-							'type' =>'post',
-							'id'=>'348',
+							'id' => '5987544f94597',
+							'source_type' =>'post',
+							'source_id'=>'348',
 							'settings'=>array(
 								'display'=>'center',
 								'excerpt'=>true,
@@ -78,8 +81,9 @@ class Sharp_Slideshow_Activator {
 					'auto_slides'=>array(),
 					'slides'=>array(
 						array(
-							'type' =>'post', // post, page, custom post
-							'id'=>'412',
+							'id' => '5987544f9459d',
+							'source_type' =>'post', // post, page, custom post
+							'source_id'=>'412',
 							'settings'=>array(
 								'display'=>'center',
 								'excerpt'=>true,
@@ -87,8 +91,9 @@ class Sharp_Slideshow_Activator {
 							),
 						),
 						array( 
-							'type' =>'post',
-							'id'=>'452',
+							'id' => '5987544f945a3',
+							'source_type' =>'post',
+							'source_id'=>'452',
 							'settings'=>array(
 								'display'=>'fit',
 								'excerpt'=>true,
@@ -96,8 +101,9 @@ class Sharp_Slideshow_Activator {
 							),
 						),
 						array( 
-							'type' =>'post',
-							'id'=>'342',
+							'id' => '5987544f945a9',
+							'source_type' =>'post',
+							'source_id'=>'342',
 							'settings'=>array(
 								'display'=>'fill',
 								'excerpt'=>true,
@@ -105,8 +111,9 @@ class Sharp_Slideshow_Activator {
 							),
 						),
 						array(
-							'type' =>'post',
-							'id'=>'478',
+							'id' => '5987544f945b1',
+							'source_type' =>'post',
+							'source_id'=>'478',
 							'settings'=>array(
 								'display'=>'center',
 								'excerpt'=>true,
