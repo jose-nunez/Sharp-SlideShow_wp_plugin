@@ -8,6 +8,8 @@ background-color: #eef442;
 
 div.sharp-slideshow{
 
+	margin-bottom: 30px;
+
 	* {box-sizing:border-box}
 
 	/* Slideshow container */
@@ -17,16 +19,17 @@ div.sharp-slideshow{
 		margin: auto;
 	}
 	
-	.sss-slide {
+	.sss-slide,.sss-no-slides{
 		display: none;
 		padding-top: 30%;
 		background:{
 			color: black;
 			repeat: no-repeat;
 			position: center;
-			// size: auto;
 		}
-
+	}
+	.sss-no-slides{
+		background-image:url(../img/nothing.png);
 	}
 
 	/* Next & previous buttons */

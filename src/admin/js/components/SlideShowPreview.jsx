@@ -25,6 +25,7 @@ export default class SlideShowPreview extends React.Component{
 	}
 	refresh = (slideShowID)=>{
 		if(slideShowID || this.props.slideShowID) this.retreiveSlideShow(slideShowID || this.props.slideShowID);
+
 	}
 	refreshButton = ()=>{
 		this.refresh();

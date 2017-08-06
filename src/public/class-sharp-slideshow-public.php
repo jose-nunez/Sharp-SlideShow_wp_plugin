@@ -186,6 +186,7 @@ class Sharp_Slideshow_Public {
 			$slides[] = $this->process_slide($pre_slide,$sources[$pre_slide['type']][''.$pre_slide['id']]);
 		}
 		return $slides;
+		// return array();
 	}
 	function store_excerpt_length($length) {
 		update_option( 'sharp_slideshow_excerpt_length', $length );
