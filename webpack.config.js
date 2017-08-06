@@ -41,6 +41,7 @@ module.exports = {
 			wordpressAPI:		p_resolve('js/util/WordpressAPI.js'),
 			sharpSlideShowAPI:	p_resolve('js/util/SharpSlideShowAPI.js'),
 			util:				p_resolve('js/util/util.js'),
+			appSettings:				p_resolve('js/util/AppSettings.js'),
 		},
 		extensions: ['.js', '.jsx']
 	},

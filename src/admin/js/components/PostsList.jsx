@@ -5,14 +5,12 @@ import shortid  from 'shortid';
 import WP_API from 'wordpressAPI';
 import indexArray from 'util';
 import ArrayPostsList from 'arrayPostsList';
-
-
-var perPage = 10;
+import AppSettings from 'appSettings';
 
 export default class PostsList extends React.Component{
 	constructor(props) {
 		super(props);
-		
+
 		this.wp_api = new WP_API(this.props.wp_api_url);
 		this.state = {
 			posts:[],
@@ -80,7 +78,7 @@ export default class PostsList extends React.Component{
 	}
 
 	retreivePosts(){
-		return this.wp_api.getPosts(perPage,this.state.page).then(
+		return this.wp_api.getPosts(AppSettings.sourcelists.perPage,this.state.page).then(
 			resp=>{
 				this.setState({pageCount:parseInt(resp.headers['x-wp-totalpages'])});
 				return resp.data
