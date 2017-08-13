@@ -4,8 +4,8 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import Slider from 'material-ui/Slider';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import PostsList from 'postsList';
-import RemoveSlidesControl from 'removeSlidesControl';
+import SourcesView from 'sourcesView';
+import SlidesView from 'slidesView';
 
 import DOMPurify from 'dompurify';
 
@@ -29,25 +29,28 @@ export default class TabsExampleSimple extends React.Component{
 	}
 
 
-	displayRemoveSlides = ()=>{
+	/*displayRemoveSlides = ()=>{
 		if(this.props.slideShowID)
 			return <RemoveSlidesControl slideShowID={this.props.slideShowID} api_url={this.props.api_url} />;
 		else return 'Holi';
-	}
-
+	}*/
 
 	render(){
 		return (
 			<Tabs>
 				<Tab label="Add Posts" >
-					<PostsList wp_api_url={this.props.wp_api_url} />
+					<SourcesView type="post" />
 				</Tab>
 				<Tab label="Add Pages" >
 				</Tab>
 				<Tab label="Add Media" >
 				</Tab>
 				<Tab label="Current" >
+				{/*
 					{this.displayRemoveSlides()}
+					<SlidesView slideShowID={this.props.slideShowID} />
+				*/}
+					<SourcesView type="slide" slideShowID={this.props.slideShowID} />
 				</Tab>
 			</Tabs>
 		);	

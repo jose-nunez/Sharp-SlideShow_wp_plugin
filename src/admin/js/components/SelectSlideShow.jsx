@@ -8,8 +8,6 @@ import SharpSlideShow_API from 'sharpSlideShowAPI';
 export default class SelectSlideShow extends React.Component{
 	constructor(props) {
 		super(props);
-		
-		this.sharpslideshow_api = new SharpSlideShow_API(this.props.api_url);
 		this.state = {selected:null,slideshows:[]};
 	}
 	
@@ -20,7 +18,7 @@ export default class SelectSlideShow extends React.Component{
 	}
 	
 	retreiveData = ()=>{
-		return this.sharpslideshow_api.getSlideShowsIDs().then(
+		return SharpSlideShow_API.getSlideShowsIDs().then(
 			({data})=>{
 				this.setState({slideshows:data,selected:data[0].ID});
 			},

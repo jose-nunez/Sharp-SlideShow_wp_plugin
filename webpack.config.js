@@ -27,11 +27,12 @@ module.exports = {
 			slideShowPreview:	p_resolve('js/components/SlideShowPreview.jsx'),
 			selectSlideShow:	p_resolve('js/components/SelectSlideShow.jsx'),
 			tabsExampleSimple:	p_resolve('js/components/Tabs.jsx'),
-			postsList:			p_resolve('js/components/PostsList.jsx'),
-				arrayPostsList:			p_resolve('js/components/postlist/ArrayPostsList.jsx'),
-				arrayPostsListElement:	p_resolve('js/components/postlist/ArrayPostsListElement.jsx'),
-				postsListStyles:		p_resolve('js/components/postlist/styles.scss'),
-			removeSlidesControl:	p_resolve('js/components/RemoveSlidesControl.jsx'),
+			sourcesView:			p_resolve('js/components/SourcesView.jsx'),
+				sourceList:			p_resolve('js/components/sources/SourceList.jsx'),
+				sourceElement:	p_resolve('js/components/sources/SourceElement.jsx'),
+				sourcesLoader:		p_resolve('js/components/sources/SourcesLoader.js'),
+				sourceStyles:		p_resolve('js/components/sources/SourceStyles.scss'),
+			slidesView:	p_resolve('js/components/SlidesView.jsx'),
 				removeSlideElement:	p_resolve('js/components/removeSlides/RemoveSlideElement.jsx'),
 			
 			/* CONTROLLERS ____________________________________________________________________________________ */

@@ -9,7 +9,6 @@ class SlideShowController{
 
 	addRefreshCallback = callbackFunc=>{
 		this.refreshCallbackList.push(callbackFunc);
-		console.log('New refreshCallback',this.refreshCallbackList);
 	};
 
 	removeRefreshCallback = callbackFunc=>{

@@ -1,18 +1,13 @@
 import axios from 'axios';
+import AppSettings from 'appSettings';
 
-/*
- *	¿SINLGETON? 
- *	 
- */
-
-// var instance = null;
+let instance = null;
 
 class WP_API{
 
-	constructor(API_URL){
-		// if(!instance){ instance = this; }
-
-		this.API_URL = API_URL;
+	constructor(){
+		if(!instance) instance = this;
+		return instance;
 	}
 
 	request(requestUrl){
@@ -22,16 +17,8 @@ class WP_API{
 		);
 	}
 
-	getPosts(per_page=10,page=1){
-		var requestUrl = this.API_URL+'posts?per_page='+per_page+'&page='+page;
-		return this.request(requestUrl);
-	}
-
-	getMedia(ids){
-		var requestUrl = this.API_URL+'media?include=' + ids.toString();
-		return this.request(requestUrl);
-	}
-
+	getPosts = (per_page=10,page=1)=>this.request(AppSettings.WP_API_URL+'posts?per_page='+per_page+'&page='+page);
+	getMedia = ids=>this.request(AppSettings.WP_API_URL+'media?include=' + ids.toString());
 
 }
-export default WP_API;
+export default new WP_API();

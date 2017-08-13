@@ -9,7 +9,6 @@ import SlideShowController from 'slideShowController';
 export default class SlideShowPreview extends React.Component{
 	constructor(props) {
 		super(props);
-		this.sharpslideshow_api = new SharpSlideShow_API(this.props.api_url);
 		this.state = {markup:''};
 	}
 	
@@ -33,7 +32,7 @@ export default class SlideShowPreview extends React.Component{
 	
 	retreiveSlideShow = (slideShowID)=>{
 		this.setState({isLoading:true});
-		return this.sharpslideshow_api.getSlideShow(slideShowID).then(
+		return SharpSlideShow_API.getSlideShow(slideShowID).then(
 			({data})=>{
 				this.setState({markup:data,isLoading:false});
 				intialice_sharpSlideShow(slideShowID); //CALLS THE GLOBAL FUNCTION TO INITIALICE THE SLIDES

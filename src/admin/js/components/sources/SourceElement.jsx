@@ -6,7 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import Checkbox from 'material-ui/Checkbox';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 
-export default class ArrayPostsListElement extends React.Component{
+export default class SourceElement extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {expanded:false,excerpt:true,newtab:false,display:1};
@@ -19,13 +19,13 @@ export default class ArrayPostsListElement extends React.Component{
 
 
 	render(){
-			let post = this.props.post;
+			let source = this.props.source;
 
 			return (
 				<Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange} className="postsListElement">
 					<CardHeader
-					  title={post.title}
-					  avatar={post.img}
+					  title={source.title}
+					  avatar={source.img_url}
 					  actAsExpander={true}
 					  showExpandableButton={false}
 					  className = "postsListElement-header"

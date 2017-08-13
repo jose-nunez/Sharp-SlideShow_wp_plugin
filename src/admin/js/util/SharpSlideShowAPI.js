@@ -1,9 +1,13 @@
 import axios from 'axios';
+import AppSettings from 'appSettings';
+
+let instance = null;
 
 class SharpSlideShow_API{
 
-	constructor(API_URL){
-		this.API_URL = API_URL;
+	constructor(){
+		if(!instance) instance = this;
+		return instance;
 	}
 
 	request(requestUrl){
@@ -13,8 +17,8 @@ class SharpSlideShow_API{
 		);
 	}
 
-	getSlideShowsIDs(){return this.request(this.API_URL+'slideshowsids');}
-	getSlideShow(slideShowID){return this.request(this.API_URL+'slideshow/'+slideShowID);}
-	getSlides(slideShowID){return this.request(this.API_URL+'slides/'+slideShowID);}
+	getSlideShowsIDs = ()=>this.request(AppSettings.API_URL+'slideshowsids');
+	getSlideShow = slideShowID=>this.request(AppSettings.API_URL+'slideshow/'+slideShowID);
+	getSlides = slideShowID => this.request(AppSettings.API_URL+'slides/'+slideShowID);
 }
-export default SharpSlideShow_API;
+export default new SharpSlideShow_API();

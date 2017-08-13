@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import AppSettings from 'appSettings';
+
 import injectTapEventPlugin from 'react-tap-event-plugin';injectTapEventPlugin();
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -26,14 +28,20 @@ const styles = {
 class MyComponent extends React.Component{
 	constructor(props) {
 		super(props);
+
+		this.initSettings();
+
 		this.state = {
 			slideShowID:null,
-			api_url:sharp_slideshow_api_url,	//External variable!
-			wp_api_url:sss_wp_api_url, 			//External variable!
 		};
 	}
 
-	loadSlideShow = (slideShowID)=>{console.log('mostrando ',slideShowID);this.setState({slideShowID:slideShowID})}
+	initSettings = ()=>{
+		AppSettings.API_URL = sharp_slideshow_api_url;	//Global variable! 
+		AppSettings.WP_API_URL = sss_wp_api_url;		//Global variable!
+	}
+
+	loadSlideShow=slideShowID=>this.setState({slideShowID:slideShowID});
 
 	render = ()=>{
 		return (
@@ -42,13 +50,13 @@ class MyComponent extends React.Component{
 				<h1>Sharp Slideshow</h1>
 				<div>
 					<RaisedButton label="Add New" /> 
-					<SelectSlideShow onChangeSelected={this.loadSlideShow} api_url={this.state.api_url} />
+					<SelectSlideShow onChangeSelected={this.loadSlideShow} />
 					<RaisedButton label="Delete" />
 				</div>
 
 				<div className="right-side"><div className="right-side-inner">
 					<h2>Preview</h2>
-					<SlideShowPreview slideShowID={this.state.slideShowID} api_url={this.state.api_url}/>
+					<SlideShowPreview slideShowID={this.state.slideShowID} />
 				</div></div>
 				<div className="left-side"><div className="left-side-inner">
 					<h1>Settings</h1>
@@ -59,7 +67,7 @@ class MyComponent extends React.Component{
 						<RadioButton value="manual" label="Manual selection" style={styles.radioButton} />
 					</RadioButtonGroup>
 					*/}
-					<TabsExampleSimple slideShowID={this.state.slideShowID} api_url={this.state.api_url} wp_api_url={this.state.wp_api_url} />
+					<TabsExampleSimple slideShowID={this.state.slideShowID} />
 				</div></div>
 			</div>
 			</MuiThemeProvider>
