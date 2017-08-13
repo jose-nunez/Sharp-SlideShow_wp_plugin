@@ -45,7 +45,7 @@ class Sharp_Slideshow_Activator {
 						array(
 							'id' => '5987544f94581',
 							'source_type' =>'post', // post, page, custom post
-							'source_id'=>'491',
+							'source_id'=>'1788',
 							'settings'=>array(
 								'display'=>'tile',//fit|fill|stretch|tile|center
 								'excerpt'=>true,
@@ -55,7 +55,7 @@ class Sharp_Slideshow_Activator {
 						array( 
 							'id' => '5987544f94590',
 							'source_type' =>'post',
-							'source_id'=>'380',
+							'source_id'=>'1758',
 							'settings'=>array(
 								'display'=>'fit',
 								'excerpt'=>true,
@@ -65,7 +65,7 @@ class Sharp_Slideshow_Activator {
 						array( 
 							'id' => '5987544f94597',
 							'source_type' =>'post',
-							'source_id'=>'348',
+							'source_id'=>'1768',
 							'settings'=>array(
 								'display'=>'center',
 								'excerpt'=>true,
@@ -83,7 +83,7 @@ class Sharp_Slideshow_Activator {
 						array(
 							'id' => '5987544f9459d',
 							'source_type' =>'post', // post, page, custom post
-							'source_id'=>'412',
+							'source_id'=>'1772',
 							'settings'=>array(
 								'display'=>'center',
 								'excerpt'=>true,
@@ -93,7 +93,7 @@ class Sharp_Slideshow_Activator {
 						array( 
 							'id' => '5987544f945a3',
 							'source_type' =>'post',
-							'source_id'=>'452',
+							'source_id'=>'1694',
 							'settings'=>array(
 								'display'=>'fit',
 								'excerpt'=>true,
@@ -103,7 +103,7 @@ class Sharp_Slideshow_Activator {
 						array( 
 							'id' => '5987544f945a9',
 							'source_type' =>'post',
-							'source_id'=>'342',
+							'source_id'=>'1750',
 							'settings'=>array(
 								'display'=>'fill',
 								'excerpt'=>true,
@@ -113,7 +113,7 @@ class Sharp_Slideshow_Activator {
 						array(
 							'id' => '5987544f945b1',
 							'source_type' =>'post',
-							'source_id'=>'478',
+							'source_id'=>'1706',
 							'settings'=>array(
 								'display'=>'center',
 								'excerpt'=>true,
