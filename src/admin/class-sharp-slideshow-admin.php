@@ -126,7 +126,20 @@ class Sharp_Slideshow_Admin {
 		
 	}
 	public function remove_slide_api($data){
-		return array($data['slideShowID'],$data['slideID']);
-		
+		return $this->remove_slide($data['slideShowID'],$data['slideID']);
+	}
+
+	private function remove_slide($slideShowID,$slideID){
+		$sharp_slideshow_data = get_option('sharp_slideshow_data');
+		$slides = $sharp_slideshow_data['slideshows'][$slideShowID]['slides'];
+		$the_key = -1;
+		foreach ($slides as $key => $slide) {
+			if($slide['id']==$slideID) $the_key = $key;
+		}
+		unset($sharp_slideshow_data['slideshows'][$slideShowID]['slides'][$the_key]);
+
+		update_option('sharp_slideshow_data',$sharp_slideshow_data);
+
+		return $sharp_slideshow_data;
 	}
 }

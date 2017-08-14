@@ -6,6 +6,7 @@ import indexArray from 'util';
 import SourceList from 'sourceList';
 import AppSettings from 'appSettings';
 import SourcesLoader from 'sourcesLoader';
+import SlideShowController from 'slideShowController';
 
 
 export default class SourcesView extends React.Component{
@@ -18,8 +19,12 @@ export default class SourcesView extends React.Component{
 		this.retrivingData=null;
 	}
 		
+	componentWillUnmount = ()=>{
+		SlideShowController.removeRefreshCallback(this.refreshData);
+	}
 	componentDidMount = ()=>{
-		this.refreshData(this.props);
+		if(this.props.type=='slide') SlideShowController.addRefreshCallback(this.refreshData); // In case the slideshow was updated
+		this.refreshData();
 	}
 	componentWillReceiveProps = (nextProps)=>{
 		let type = nextProps.type;
@@ -56,7 +61,7 @@ export default class SourcesView extends React.Component{
 		},
 	}
 
-	refreshData = (props,page)=>{
+	refreshData = (props=this.props,page)=>{
 		let type = props.type;
 		if(!type) return null;
 		else{

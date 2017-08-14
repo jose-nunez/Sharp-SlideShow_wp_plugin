@@ -27,11 +27,13 @@ module.exports = {
 			slideShowPreview:	p_resolve('js/components/SlideShowPreview.jsx'),
 			selectSlideShow:	p_resolve('js/components/SelectSlideShow.jsx'),
 			tabsExampleSimple:	p_resolve('js/components/Tabs.jsx'),
+			confirmDialog:	p_resolve('js/components/ConfirmDialog.jsx'),
 			sourcesView:			p_resolve('js/components/SourcesView.jsx'),
 				sourceList:			p_resolve('js/components/sources/SourceList.jsx'),
 				sourceElement:	p_resolve('js/components/sources/SourceElement.jsx'),
 				sourcesLoader:		p_resolve('js/components/sources/SourcesLoader.js'),
 				sourceStyles:		p_resolve('js/components/sources/SourceStyles.scss'),
+				
 			slidesView:	p_resolve('js/components/SlidesView.jsx'),
 				removeSlideElement:	p_resolve('js/components/removeSlides/RemoveSlideElement.jsx'),
 			

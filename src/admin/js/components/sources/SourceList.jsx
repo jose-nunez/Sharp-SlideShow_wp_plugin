@@ -5,6 +5,7 @@ import Subheader from 'material-ui/Subheader';
 import Checkbox from 'material-ui/Checkbox';
 import Avatar from 'material-ui/Avatar';
 
+import SlideShowController from 'slideShowController';
 import SharpSlideShow_API from 'sharpSlideShowAPI';
 import SourceElement from 'sourceElement';
 import 'sourceStyles';
@@ -43,13 +44,13 @@ export default class SourceList extends React.Component{
 
 	addSlide = (slide)=>{
 		return SharpSlideShow_API.addSlide(this.props.slideShowID,slide).then(
-			resp=>{console.log(resp)},
+			resp=>{SlideShowController.requestRefresh();console.log('refrescandola add',resp)},
 			err=>{throw err;}
 		);
 	}
 	removeSlide = (slideID)=>{
 		return SharpSlideShow_API.removeSlide(this.props.slideShowID,slideID).then(
-			resp=>{console.log(resp)},
+			resp=>{if(resp.data)SlideShowController.requestRefresh();},
 			err=>{throw err;}
 		);
 	}

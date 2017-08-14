@@ -13,8 +13,10 @@ class SlideShowController{
 
 	removeRefreshCallback = callbackFunc=>{
 		var index = this.refreshCallbackList.indexOf(callbackFunc);
-		this.refreshCallbackList.splice(index,1);
-		console.log('Removed refreshCallback',this.refreshCallbackList);
+		if(index>=0){ 
+			this.refreshCallbackList.splice(index,1);
+			console.log('Removed refreshCallback',this.refreshCallbackList);
+		}
 	};
 
 	requestRefresh = ()=>this.refreshCallbackList.forEach(callbackFunc=>callbackFunc());
