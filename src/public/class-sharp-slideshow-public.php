@@ -177,8 +177,17 @@ class Sharp_Slideshow_Public {
 		$pre_slides = $sharp_slideshow_data['slideshows'][''.$slideShowID]['slides'];
 		
 		$sources = array();
-		$posts_ids = '';foreach ($pre_slides as $key => $pre_slide){$posts_ids .= $pre_slide['source_id'].',';}rtrim($posts_ids,',');
+		$posts_ids = '';
+		$pages_ids = '';
+		foreach ($pre_slides as $key => $pre_slide){
+			if($pre_slide['source_type']=='post') $posts_ids .= $pre_slide['source_id'].',';
+			if($pre_slide['source_type']=='page') $pages_ids .= $pre_slide['source_id'].',';
+		}
+		rtrim($posts_ids,',');
+		rtrim($pages_ids,',');
+		
 		$sources['post'] = $this->get_posts_idexed(array('include'=>$posts_ids));
+		$sources['page'] = $this->get_pages_idexed(array('include'=>$pages_ids));
 
 		$slides = array();
 		foreach ($pre_slides as $key => $pre_slide) {
@@ -199,14 +208,25 @@ class Sharp_Slideshow_Public {
 		return $result;
 	}
 
+	private function get_pages_idexed($args){
+		$pages_array = get_pages( $args );
+		$result = array();
+		foreach ($pages_array as $key => $page) $result[''.$page->ID] = $page;
+		return $result;
+	}
+
 	private function process_slide($pre_slide,$source){
-		if($pre_slide['source_type']=='post'){
-			return array_merge($pre_slide,array(
+		if($pre_slide['source_type']=='post' || $pre_slide['source_type']=='page'){
+			$slide = array_merge($pre_slide,array(
 				'title'=>$source->post_title,
 				'caption'=> ($pre_slide['settings']['excerpt'] && $source->post_excerpt) ? $source->post_excerpt : wp_kses_post(wp_trim_words( $source->post_content,intval(get_option('sharp_slideshow_excerpt_length')))),
-				'img_url'=>get_the_post_thumbnail_url($source->ID,'large'),
 				'link'=>get_permalink($source->ID),
 			));
+			
+			$img_url = get_the_post_thumbnail_url($source->ID,'large');
+			if($img_url) $slide['img_url'] = $img_url;
+			
+			return $slide;
 		}
 	}
 

@@ -16,8 +16,8 @@ export default class SourceList extends React.Component{
 	}
 
 	extractParams ={
-		page: page=>this.extractParams['post'](page),
-		post: post=>{
+		page: page=>this.extractParams['post'](page,'page'),
+		post: (post,type='post')=>{
 			let img = null;
 			let imgobj,img_sizes;
 			if(post.featured_media && (imgobj = this.props.sources.images[post.featured_media]) ){ 
@@ -31,7 +31,7 @@ export default class SourceList extends React.Component{
 			return {
 					title:post.title.rendered,
 					img_url:img,
-					source_type:'post',
+					source_type:type,
 					source_id:''+post.id,
 					settings:{},
 					link:post.link,

@@ -125,7 +125,7 @@ class Sharp_Slideshow_Admin {
 	}
 
 	public function add_slide_api($data){
-		return array($data['slideShowID'],$data['slide']);
+		return $this->add_slide($data['slideShowID'],$data['slide']);
 		
 	}
 	public function update_slide_api($data){
@@ -136,6 +136,15 @@ class Sharp_Slideshow_Admin {
 		return $this->remove_slide($data['slideShowID'],$data['slideID']);
 	}
 
+	private function add_slide($slideShowID,$slide){
+		$sharp_slideshow_data = get_option('sharp_slideshow_data');
+		
+		$slide['id'] = uniqid();
+		$sharp_slideshow_data['slideshows'][$slideShowID]['slides'][] = $slide;
+		
+		update_option('sharp_slideshow_data',$sharp_slideshow_data);
+		return $sharp_slideshow_data['slideshows'][$slideShowID]['slides'];
+	}
 	private function update_slide($slideShowID,$slide){
 		$sharp_slideshow_data = get_option('sharp_slideshow_data');
 		$the_key = $this->find_slide($slideShowID,$slide['id']);
