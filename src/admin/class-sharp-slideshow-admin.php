@@ -113,9 +113,20 @@ class Sharp_Slideshow_Admin {
 	*/
 	public function extend_API($data) {
 		register_rest_route($this->options['api_namespace'],
-			'/slideshow2',
-			array('methods' => 'GET','callback' => function(){return "holi";},
-			) 
+			'/addSlide',array('methods' => 'POST','callback' => array($this,'add_slide_api'))
+		);
+
+		register_rest_route($this->options['api_namespace'],
+			'/removeSlide',array('methods' => 'POST','callback' => array($this,'remove_slide_api'))
 		);	
+	}
+
+	public function add_slide_api($data){
+		return array($data['slideShowID'],$data['slide']);
+		
+	}
+	public function remove_slide_api($data){
+		return array($data['slideShowID'],$data['slideID']);
+		
 	}
 }

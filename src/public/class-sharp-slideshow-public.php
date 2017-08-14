@@ -87,7 +87,6 @@ class Sharp_Slideshow_Public {
 		register_rest_route($this->options['api_namespace'],
 			'/slides/(?P<slideShowID>[a-zA-Z0-9-]+)',array('methods' => 'GET','callback' => array($this,'get_slides_api'))
 		);
-			
 	}
 
 	public function get_slides_api($data){

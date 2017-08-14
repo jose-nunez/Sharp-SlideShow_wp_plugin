@@ -17,7 +17,7 @@ class WP_API{
 		);
 	}
 
-	getPosts = (per_page=10,page=1)=>this.request(AppSettings.WP_API_URL+'posts?per_page='+per_page+'&page='+page);
+	getPosts = (type='posts',per_page=10,page=1)=>this.request(AppSettings.WP_API_URL+type+'?per_page='+per_page+'&page='+page);
 	getMedia = ids=>this.request(AppSettings.WP_API_URL+'media?include=' + ids.toString());
 
 }

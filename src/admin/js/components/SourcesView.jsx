@@ -29,6 +29,7 @@ export default class SourcesView extends React.Component{
 	}
 
 	shouldRefreshData = {
+		page:(nextProps)=>this.shouldRefreshData['post'](nextProps),
 		post:(nextProps)=>{
 			return false;
 		},
@@ -38,6 +39,7 @@ export default class SourcesView extends React.Component{
 	}
 
 	prepareArgs = {
+		page:(props,page)=>this.prepareArgs['post'](props,page),
 		post:(props,page)=>{
 			return {
 				perPage: AppSettings.sourcelists.perPage,
@@ -66,7 +68,7 @@ export default class SourcesView extends React.Component{
 			this.retrivingData = processID;
 			this.setState({page:page,isLoading:true,sources:[]});
 			return this.retreiveSources[type](args).then(
-				data=>{					
+				data=>{
 					if(this.retrivingData !== processID) return;
 					this.setState({...data,isLoading:false});
 				},
@@ -76,15 +78,19 @@ export default class SourcesView extends React.Component{
 	}
 
 	retreiveSources = {
+		page:({perPage,page})=>{
+			return SourcesLoader.retreivePages(perPage,page).then(
+				({pageCount,pages,images})=>({sources:{page:pages,images:images},pageCount:pageCount}),
+				err=>{throw err}
+			)
+		},
 		post:({perPage,page})=>{
-
 			return SourcesLoader.retreivePosts(perPage,page).then(
 				({pageCount,posts,images})=>({sources:{post:posts,images:images},pageCount:pageCount}),
 				err=>{throw err}
 			)
 		},
 		slide:({slideShowID,page})=>{
-
 			return SourcesLoader.retreiveSlides(slideShowID,page).then(
 				({slides,pageCount})=>({sources:{slide:slides}}),
 				err=>{throw err;}
@@ -123,7 +129,7 @@ export default class SourcesView extends React.Component{
 
 	renderList = ()=>{
 		if(this.state.isLoading) return <span className="spinner block is-active"></span>;
-		else return <SourceList type={this.props.type} sources={this.state.sources} />;
+		else return <SourceList slideShowID={this.props.slideShowID} type={this.props.type} sources={this.state.sources} />;
 	}
 
 	handlePageClick = data=> {

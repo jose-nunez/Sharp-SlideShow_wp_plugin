@@ -39,17 +39,14 @@ export default class TabsExampleSimple extends React.Component{
 		return (
 			<Tabs>
 				<Tab label="Add Posts" >
-					<SourcesView type="post" />
+					<SourcesView type="post" slideShowID={this.props.slideShowID} />
 				</Tab>
 				<Tab label="Add Pages" >
+					<SourcesView type="page" slideShowID={this.props.slideShowID} />
 				</Tab>
 				<Tab label="Add Media" >
 				</Tab>
 				<Tab label="Current" >
-				{/*
-					{this.displayRemoveSlides()}
-					<SlidesView slideShowID={this.props.slideShowID} />
-				*/}
 					<SourcesView type="slide" slideShowID={this.props.slideShowID} />
 				</Tab>
 			</Tabs>

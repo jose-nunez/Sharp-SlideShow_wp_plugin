@@ -19,23 +19,32 @@ class SourcesLoader{
 		);
 	}
 
-	retreivePosts = (perPage,page)=>{
-		return WP_API.getPosts(perPage,page).then(
+	retreivePages = (perPage,page)=>this.retreivePosts(perPage,page,'pages');
+
+	retreivePosts = (perPage,page,type='posts')=>{
+		return WP_API.getPosts(type,perPage,page).then(
 			resp=>({posts:resp.data,pageCount:parseInt(resp.headers['x-wp-totalpages'])}),
 			err=>{throw new Error(err.response.data.message);}
 		).then(
 			data=>{
-				let ids = data.posts
-				.filter(post=>post.featured_media?true:false)
-				.map((post,index)=>post.featured_media);
+				let ids = data.posts.filter(post=>post.featured_media?true:false).map((post,index)=>post.featured_media);
 
+				if(ids.length>0)
 				return this.retreiveFeaturedImages(ids).then(
 					images=>{
 						let indexed_images = indexArray(images,'id');
-						return {pageCount:data.pageCount,posts:data.posts,images:indexed_images};
+						let resp = {pageCount:data.pageCount,images:indexed_images};
+						resp[type] = data.posts;
+						return resp;
 					},
 					err=>{throw err}
 				);
+
+				else{
+					let resp = {pageCount:data.pageCount,images:{}};
+					resp[type] = data.posts;
+					return resp;
+				} 
 			},
 			err=>{throw err;}
 		);

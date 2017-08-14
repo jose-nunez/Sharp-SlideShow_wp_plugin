@@ -44,10 +44,14 @@ export default class SourceElement extends React.Component{
 						</SelectField>
 						<Checkbox label="Include excerpt" checked={this.state.excerpt} onCheck={this.handleExcerptCheck} />
 						<Checkbox label="Link opens on new page" checked={this.state.newtab}  onCheck={this.handleNewTabCheck}  />
-						<RaisedButton className="btn-add" label="Add" />
+						
+						{(this.props.type!='slide'? 
+							<RaisedButton label="Add" onTouchTap={evt=>this.props.addSlide(source)}	className="btn-add" /> : 
+							<RaisedButton label="Remove" onTouchTap={evt=>this.props.removeSlide(source.id)} className="btn-delete" buttonStyle={{backgroundColor:'#dc4040'}} />
+						)}
 					</CardText>
 				</Card>
-
 			);
 	}
+
 }
