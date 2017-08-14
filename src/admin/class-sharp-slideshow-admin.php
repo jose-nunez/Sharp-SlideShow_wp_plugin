@@ -115,6 +115,9 @@ class Sharp_Slideshow_Admin {
 		register_rest_route($this->options['api_namespace'],
 			'/addSlide',array('methods' => 'POST','callback' => array($this,'add_slide_api'))
 		);
+		register_rest_route($this->options['api_namespace'],
+			'/updateSlide',array('methods' => 'POST','callback' => array($this,'update_slide_api'))
+		);
 
 		register_rest_route($this->options['api_namespace'],
 			'/removeSlide',array('methods' => 'POST','callback' => array($this,'remove_slide_api'))
@@ -125,21 +128,39 @@ class Sharp_Slideshow_Admin {
 		return array($data['slideShowID'],$data['slide']);
 		
 	}
+	public function update_slide_api($data){
+		return $this->update_slide($data['slideShowID'],$data['slide']);
+		
+	}
 	public function remove_slide_api($data){
 		return $this->remove_slide($data['slideShowID'],$data['slideID']);
 	}
 
+	private function update_slide($slideShowID,$slide){
+		$sharp_slideshow_data = get_option('sharp_slideshow_data');
+		$the_key = $this->find_slide($slideShowID,$slide['id']);
+		
+		$sharp_slideshow_data['slideshows'][$slideShowID]['slides'][$the_key] = $slide;;
+		
+		update_option('sharp_slideshow_data',$sharp_slideshow_data);
+		return true;
+	}
 	private function remove_slide($slideShowID,$slideID){
 		$sharp_slideshow_data = get_option('sharp_slideshow_data');
-		$slides = $sharp_slideshow_data['slideshows'][$slideShowID]['slides'];
-		$the_key = -1;
-		foreach ($slides as $key => $slide) {
-			if($slide['id']==$slideID) $the_key = $key;
-		}
+		$the_key = $this->find_slide($slideShowID,$slideID);
+		
 		unset($sharp_slideshow_data['slideshows'][$slideShowID]['slides'][$the_key]);
-
+		
 		update_option('sharp_slideshow_data',$sharp_slideshow_data);
+		return true;
+	}
 
-		return $sharp_slideshow_data;
+	private function find_slide($slideShowID,$slideID){
+		$sharp_slideshow_data = get_option('sharp_slideshow_data');
+		$slideShow = $sharp_slideshow_data['slideshows'][$slideShowID];
+		foreach ($slideShow['slides'] as $key => $slide) {
+			if($slide['id']==$slideID) return $key;
+		}
+		return -1;
 	}
 }

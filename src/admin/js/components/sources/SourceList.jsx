@@ -41,16 +41,21 @@ export default class SourceList extends React.Component{
 		slide:slide=>slide,
 	}
 
-
 	addSlide = (slide)=>{
 		return SharpSlideShow_API.addSlide(this.props.slideShowID,slide).then(
 			resp=>{SlideShowController.requestRefresh();console.log('refrescandola add',resp)},
 			err=>{throw err;}
 		);
 	}
+	updateSlide = (slide)=>{
+		return SharpSlideShow_API.updateSlide(this.props.slideShowID,slide).then(
+			resp=>{SlideShowController.requestRefresh();console.log('refrescandola update',resp)},
+			err=>{throw err;}
+		);
+	}
 	removeSlide = (slideID)=>{
 		return SharpSlideShow_API.removeSlide(this.props.slideShowID,slideID).then(
-			resp=>{if(resp.data)SlideShowController.requestRefresh();},
+			resp=>{if(resp.data)SlideShowController.requestRefresh();console.log('refrescandola delete',resp)},
 			err=>{throw err;}
 		);
 	}
@@ -65,6 +70,7 @@ export default class SourceList extends React.Component{
 							type={this.props.type} 
 							source={this.extractParams[this.props.type](source)} 
 							addSlide={this.addSlide}
+							updateSlide={this.updateSlide}
 							removeSlide={this.removeSlide}
 						/>
 					);

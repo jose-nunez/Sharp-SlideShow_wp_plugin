@@ -20,5 +20,6 @@ class SharpSlideShow_API{
 	getSlides = slideShowID => this.request(AppSettings.API_URL+'slides/'+slideShowID);
 	removeSlide = (slideShowID,slideID)=>this.request(AppSettings.API_URL+'removeSlide',{slideShowID:slideShowID,slideID:slideID});
 	addSlide = (slideShowID,slide)=>this.request(AppSettings.API_URL+'addSlide',{slideShowID:slideShowID,slide:slide});
+	updateSlide = (slideShowID,slide)=>this.request(AppSettings.API_URL+'updateSlide',{slideShowID:slideShowID,slide:slide});
 }
 export default new SharpSlideShow_API();
