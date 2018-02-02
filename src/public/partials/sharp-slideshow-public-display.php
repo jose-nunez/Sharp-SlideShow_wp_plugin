@@ -53,7 +53,10 @@
 				style="<?=specialStyle($slide)?>;<?=generalStyle()?>" 
 				class="sss-slide sss-slide-<?=$slideShowID?> fade" 
 			>
-				<div class="text"><?= $slide['title'].' '.(boolval($slide['settings']['excerpt'])? $slide['caption'] : '') ?></div>
+				<div class="text">
+					<h1><?= $slide['title']?></h1>
+					<p><?= (boolval($slide['settings']['excerpt'])? $slide['caption'] : '') ?></p>
+				</div>
 			</div>
 			</a>
 		<?php endforeach; ?>

@@ -14,9 +14,11 @@ div.sharp-slideshow{
 
 	/* Slideshow container */
 	.sss-container {
-		max-width: 1000px;
+		// max-width: 1000px;
 		position: relative;
 		margin: auto;
+		border: 1px solid white;
+		overflow:hidden;
 	}
 	
 	.sss-slide,.sss-no-slides{
@@ -36,9 +38,14 @@ div.sharp-slideshow{
 	.prev, .next {
 		cursor: pointer;
 		position: absolute;
-		top: 50%;
-		width: auto;
-		margin-top: -22px;
+		// top: 50%;
+		// margin-top: -22px;
+		top: 0%;
+		height: 100%;
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+		width: 45px;
 		padding: 16px;
 		color: white;
 		font-weight: bold;
@@ -55,18 +62,26 @@ div.sharp-slideshow{
 
 	/* On hover, add a black background color with a little bit see-through */
 	.prev:hover, .next:hover {
-		background-color: rgba(0,0,0,0.8);
+		background-color: rgba(0,0,0,.4);
 	}
 
 	/* Caption text */
 	.text {
-		color: #f2f2f2;
-		font-size: 15px;
-		padding: 8px 12px;
+		padding: 2% 10%;
 		position: absolute;
-		bottom: 8px;
-		width: 100%;
+		bottom: 10px;
+		left: 45px;
+		width: calc(100% - 90px);
 		text-align: center;
+		color: #f2f2f2;
+		background-color: rgba(0,0,0,.4);
+		font-family: Helvetica,Arial;
+		h1,p{
+			line-height: 1.5em;
+		}
+		h1{
+			font-size: 1.7em;
+		}
 	}
 
 	/* Number text (1/3 etc) */
